@@ -1,0 +1,220 @@
+[ 2015-08-04T20:18:07+08:00 ] 127.0.0.1 /kiki/admin.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.051628s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.009977s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.010046s ]
+SQL: SHOW COLUMNS FROM `kiki_system_info` [ RunTime:0.0235s ]
+SQL: SELECT * FROM `kiki_system_info` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `kiki_menu_admin` [ RunTime:0.0401s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Index' AND `level` = 0 LIMIT 1   [ RunTime:0.0004s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'index' AND `id_father` = 4 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Index' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'index' AND `id_father` = 4 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Index' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Index' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'index' AND `level` = 1 AND `id_father` = 4 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_system_info` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `level` = 0 AND `isvisible` = 1  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 1 AND `isvisible` = 1  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 8 AND `isvisible` = 1  [ RunTime:0.0004s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 14 AND `isvisible` = 1  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 18 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 19 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 21 AND `isvisible` = 1  [ RunTime:0.0003s ]
+
+[ 2015-08-04T20:18:07+08:00 ] 127.0.0.1 /kiki/admin.php/Home/Login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000009s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000255s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000299s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000333s ]
+SQL: SHOW COLUMNS FROM `kiki_system_info` [ RunTime:0.0032s ]
+SQL: SELECT * FROM `kiki_system_info` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `kiki_menu_admin` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'login' AND `id_father` = 6 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'login' AND `id_father` = 6 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'login' AND `level` = 1 AND `id_father` = 6 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_system_info` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `level` = 0 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 1 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 8 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 14 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 18 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 19 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 21 AND `isvisible` = 1  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000032s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000077s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.051543s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.051601s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.006355s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.006444s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.007517s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007566s ]
+
+[ 2015-08-04T20:18:07+08:00 ] 127.0.0.1 /kiki/admin.php/Home/Login/login.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000296s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000422s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000461s ]
+SQL: SHOW COLUMNS FROM `kiki_system_info` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `kiki_system_info` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `kiki_menu_admin` [ RunTime:0.0026s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'login' AND `id_father` = 6 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'login' AND `id_father` = 6 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'login' AND `level` = 1 AND `id_father` = 6 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_system_info` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `level` = 0 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 1 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 8 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 14 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 18 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 19 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 21 AND `isvisible` = 1  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000032s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000078s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.005219s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.005264s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000302s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000334s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000423s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000455s ]
+
+[ 2015-08-04T20:18:11+08:00 ] 127.0.0.1 /kiki/admin.php/Home/Login/doLogin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000253s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000305s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000340s ]
+SQL: SHOW COLUMNS FROM `kiki_system_info` [ RunTime:0.0031s ]
+SQL: SELECT * FROM `kiki_system_info` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `kiki_menu_admin` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'doLogin' AND `id_father` = 6 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id` = 11 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'doLogin' AND `id_father` = 6 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id` = 11 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'doLogin' AND `level` = 1 AND `id_father` = 6 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_system_info` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `level` = 0 AND `isvisible` = 1  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 1 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 8 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 14 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 18 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 19 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 21 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `kiki_user_admin` [ RunTime:0.0473s ]
+SQL: SELECT * FROM `kiki_user_admin` WHERE `username` = 'superadmin' LIMIT 1   [ RunTime:0.0004s ]
+SQL: UPDATE `kiki_user_admin` SET `username`='superadmin',`password`='d9bnPMpGxNKlsSUlXQ+sYA==',`nickname`='SuperAdmin',`datetime_added`='2015-07-24 22:29:46',`gender`='1',`salt`='kikiadmin',`birthday`=NULL,`lasttime_login`='2015-08-04 20:18:11',`isonline`='0',`id_user_added`=NULL,`lastip_login`='127.0.0.1',`lastmac_login`=NULL WHERE `id` = 1 [ RunTime:0.0495s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Login' AND `level` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'doLogin' AND `id_father` = 6 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SHOW COLUMNS FROM `kiki_log_admin` [ RunTime:0.1181s ]
+SQL: INSERT INTO `kiki_log_admin` (`datetime_added`,`id_user_added`,`module_operated`,`function_operated`,`information`) VALUES ('2015-08-04 20:18:11','1','6','11','superadmin||成功登录到后台') [ RunTime:0.0452s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000027s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000071s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015143s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015180s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000171s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000198s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000343s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000404s ]
+
+[ 2015-08-04T20:18:14+08:00 ] 127.0.0.1 /kiki/admin.php/Home/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000010s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000253s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000308s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000344s ]
+SQL: SHOW COLUMNS FROM `kiki_system_info` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `kiki_system_info` LIMIT 1   [ RunTime:0.0003s ]
+SQL: SHOW COLUMNS FROM `kiki_menu_admin` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Index' AND `level` = 0 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'index' AND `id_father` = 4 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Index' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'index' AND `id_father` = 4 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id` = 5 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Index' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'Index' AND `level` = 0 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `url` = 'index' AND `level` = 1 AND `id_father` = 4 LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_system_info` LIMIT 1   [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `level` = 0 AND `isvisible` = 1  [ RunTime:0.0005s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 1 AND `isvisible` = 1  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 8 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 14 AND `isvisible` = 1  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 18 AND `isvisible` = 1  [ RunTime:0.0003s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 19 AND `isvisible` = 1  [ RunTime:0.0002s ]
+SQL: SELECT * FROM `kiki_menu_admin` WHERE `id_father` = 21 AND `isvisible` = 1  [ RunTime:0.0002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000044s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000087s ]
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 85 行.
+NOTIC: [8] Undefined index: isactivated E:\xampp\htdocs\KIKI\Management\Runtime\Cache\Home\c3b648367b12180083be84eded1ea5df.php 第 91 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.071911s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.071954s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000218s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000249s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000429s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000473s ]
+

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>EditGroup - {$title}</title>
+</head>
+<body>
+<include file="Framework/framework"/>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <header>
+        <div class="row title">
+            <div class="col-md-12">
+                <h3>
+                    <ol class="breadcrumb">
+                        <li><i class="glyphicon glyphicon-chevron-right"></i>
+                            <a href="{$currentURL}">{$controllerName}</a>
+                        </li>
+                        <li>{$actionName}</li>
+                    </ol>
+                </h3>
+            </div>
+        </div>
+    </header>
+    <div class="form-horizontal">
+        <div id="body-wrap" class="breadcrumb">
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">群组名：</label>
+                <div class="col-sm-4">
+                    <label class="control-label">{$group.name}</label>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">群组容量：</label>
+                <div class="col-sm-4">
+                    <label class="control-label">{$group.capacity}</label>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">添加日期：</label>
+                <div class="col-sm-4">
+                    <label class="control-label">{$group.datetime_added}</label>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">添加人：</label>
+                <div class="col-sm-4">
+                    <label class="control-label">{$group.username_added}</label>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">群组类型：</label>
+                <div class="col-sm-2">
+                    <if condition="$group.type eq 0">
+                        <span class="label label-default">全局通用</span>
+                        <elseif condition="$group.type eq 1"/>
+                        <span class="label label-danger">仅限前台</span>
+                        <elseif condition="$group.type eq 2"/>
+                        <span class="label label-info">仅限后台</span>
+                    </if>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">是否可用：</label>
+                <div class="col-sm-2">
+                    <if condition="$group.isenabled eq 0">
+                        <span class="label label-default control-label">不可用</span>
+                        <else />
+                        <span class="label label-success control-label">启用中</span>
+                    </if>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">群组描述：</label>
+                <div class="col-sm-4">
+                    <label class="control-label">{$group.introduction}</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <form class="form-horizontal" enctype="multipart/form-data" method="post" action="{:U('Permission/editThePermission')}" style="margin-top: 20px;">
+            <input type="hidden" name="edit_group[id]" value="{$group.id}">
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">更改群组名：</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="edit_permission[name]" placeholder="名称" style="display:inline-block;width: 60%;" value="{$group.name}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">群组容量：</label>
+                <div class="col-sm-4">
+                    <input type="number" class="form-control" style="display:inline-block;" value="{$group.capacity}">
+                </div>
+                <p class="help-block">*群组的可容纳人数</p>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">更改描述：</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="edit_permission[introduction]" placeholder="权限的描述" style="display:inline-block;" value="{$permission.introduction}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">更改群组类型：</label>
+                <div class="col-sm-4">
+                    <select name="edit_permission[type]" class="form-control" disabled>
+                        <if condition="$group.type eq 0">
+                            <option value="0" selected>全局通用</option>
+                            <option value="1">仅限前台</option>
+                            <option value="2">仅限后台</option>
+                            <elseif condition="$permission.type eq 1"/>
+                            <option value="1" selected>仅限前台</option>
+                            <option value="0">全局通用</option>
+                            <option value="2">仅限后台</option>
+                            <elseif condition="$permission.type eq 2"/>
+                            <option value="2" selected>仅限后台</option>
+                            <option value="0">全局通用</option>
+                            <option value="1">仅限前台</option>
+                        </if>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">更改是否启用：</label>
+
+                <div class="col-sm-2">
+                    <select name="edit_permission[isenabled]" class="form-control">
+                        <if condition="$group.isenabled eq 0">
+                            <option value="0" selected>不可用</option>
+                            <option value="1">启用</option>
+                            <else />
+                            <option value="1" selected>启用</option>
+                            <option value="0">不可用</option>
+                        </if>
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row" style="margin-top: 20px;">
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary" style="margin-left: 100px;">保存</button>
+                </div>
+                <div class="col-sm-4">
+                    <a href="javascript:history.go(-1);">
+                        <span class="btn btn-default">返回</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

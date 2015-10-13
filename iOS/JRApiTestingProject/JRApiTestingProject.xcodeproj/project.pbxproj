@@ -1,0 +1,542 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6CDF517FC0F63E522BE76532 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7D908739F08D5412CD63A45 /* libPods.a */; };
+		BB47687E1BBB807D005E367D /* EncryptTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB47687C1BBB807D005E367D /* EncryptTestViewController.swift */; };
+		BB47687F1BBB807D005E367D /* EncryptTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB47687D1BBB807D005E367D /* EncryptTestViewController.xib */; };
+		BBE27C4D1BBA588B0051A3E1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C4C1BBA588B0051A3E1 /* AppDelegate.swift */; };
+		BBE27C4F1BBA588B0051A3E1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C4E1BBA588B0051A3E1 /* ViewController.swift */; };
+		BBE27C521BBA588B0051A3E1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBE27C501BBA588B0051A3E1 /* Main.storyboard */; };
+		BBE27C541BBA588B0051A3E1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBE27C531BBA588B0051A3E1 /* Images.xcassets */; };
+		BBE27C571BBA588C0051A3E1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE27C551BBA588C0051A3E1 /* LaunchScreen.xib */; };
+		BBE27C631BBA588C0051A3E1 /* JRApiTestingProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C621BBA588C0051A3E1 /* JRApiTestingProjectTests.swift */; };
+		BBE27C6E1BBA58F80051A3E1 /* NetworkTestingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C6C1BBA58F80051A3E1 /* NetworkTestingViewController.swift */; };
+		BBE27C6F1BBA58F80051A3E1 /* NetworkTestingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE27C6D1BBA58F80051A3E1 /* NetworkTestingViewController.xib */; };
+		BBE27C711BBA59940051A3E1 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C701BBA59940051A3E1 /* System.swift */; };
+		BBE27C731BBA59ED0051A3E1 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C721BBA59ED0051A3E1 /* Log.swift */; };
+		BBE27C751BBA5A080051A3E1 /* AppParamEncryptUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C741BBA5A080051A3E1 /* AppParamEncryptUtil.swift */; };
+		BBE27C771BBA5BA80051A3E1 /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C761BBA5BA80051A3E1 /* Dao.swift */; };
+		BBE27C7C1BBA5DA30051A3E1 /* JRPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C7B1BBA5DA30051A3E1 /* JRPickerView.swift */; };
+		BBE27C7F1BBA634D0051A3E1 /* NetworkTestingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C7D1BBA634D0051A3E1 /* NetworkTestingTableViewCell.swift */; };
+		BBE27C801BBA634D0051A3E1 /* NetworkTestingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBE27C7E1BBA634D0051A3E1 /* NetworkTestingTableViewCell.xib */; };
+		BBE27C831BBA700B0051A3E1 /* QCloudAppParamEncryptTool.m in Sources */ = {isa = PBXBuildFile; fileRef = BBE27C821BBA700B0051A3E1 /* QCloudAppParamEncryptTool.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BBE27C5D1BBA588C0051A3E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BBE27C3F1BBA588B0051A3E1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BBE27C461BBA588B0051A3E1;
+			remoteInfo = JRApiTestingProject;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2652301D8A2ABB7A63D7CB8B /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A7D908739F08D5412CD63A45 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB47687C1BBB807D005E367D /* EncryptTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EncryptTestViewController.swift; sourceTree = "<group>"; };
+		BB47687D1BBB807D005E367D /* EncryptTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EncryptTestViewController.xib; sourceTree = "<group>"; };
+		BBE27C471BBA588B0051A3E1 /* JRApiTestingProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JRApiTestingProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBE27C4B1BBA588B0051A3E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBE27C4C1BBA588B0051A3E1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		BBE27C4E1BBA588B0051A3E1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		BBE27C511BBA588B0051A3E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		BBE27C531BBA588B0051A3E1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		BBE27C561BBA588C0051A3E1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		BBE27C5C1BBA588C0051A3E1 /* JRApiTestingProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JRApiTestingProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BBE27C611BBA588C0051A3E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BBE27C621BBA588C0051A3E1 /* JRApiTestingProjectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JRApiTestingProjectTests.swift; sourceTree = "<group>"; };
+		BBE27C6C1BBA58F80051A3E1 /* NetworkTestingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTestingViewController.swift; sourceTree = "<group>"; };
+		BBE27C6D1BBA58F80051A3E1 /* NetworkTestingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NetworkTestingViewController.xib; sourceTree = "<group>"; };
+		BBE27C701BBA59940051A3E1 /* System.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
+		BBE27C721BBA59ED0051A3E1 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		BBE27C741BBA5A080051A3E1 /* AppParamEncryptUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppParamEncryptUtil.swift; sourceTree = "<group>"; };
+		BBE27C761BBA5BA80051A3E1 /* Dao.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
+		BBE27C7A1BBA5BF00051A3E1 /* JRApiTestingProject-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "JRApiTestingProject-Bridging-Header.h"; sourceTree = "<group>"; };
+		BBE27C7B1BBA5DA30051A3E1 /* JRPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JRPickerView.swift; sourceTree = "<group>"; };
+		BBE27C7D1BBA634D0051A3E1 /* NetworkTestingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTestingTableViewCell.swift; sourceTree = "<group>"; };
+		BBE27C7E1BBA634D0051A3E1 /* NetworkTestingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NetworkTestingTableViewCell.xib; sourceTree = "<group>"; };
+		BBE27C811BBA700B0051A3E1 /* QCloudAppParamEncryptTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QCloudAppParamEncryptTool.h; sourceTree = "<group>"; };
+		BBE27C821BBA700B0051A3E1 /* QCloudAppParamEncryptTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QCloudAppParamEncryptTool.m; sourceTree = "<group>"; };
+		EE2B709F63194D75FC242D66 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BBE27C441BBA588B0051A3E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6CDF517FC0F63E522BE76532 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBE27C591BBA588C0051A3E1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1156FCC0540931835A02271D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EE2B709F63194D75FC242D66 /* Pods.debug.xcconfig */,
+				2652301D8A2ABB7A63D7CB8B /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		1950474720C4D2E93E5E1FF1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7D908739F08D5412CD63A45 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BBE27C3E1BBA588B0051A3E1 = {
+			isa = PBXGroup;
+			children = (
+				BBE27C491BBA588B0051A3E1 /* JRApiTestingProject */,
+				BBE27C5F1BBA588C0051A3E1 /* JRApiTestingProjectTests */,
+				BBE27C481BBA588B0051A3E1 /* Products */,
+				1156FCC0540931835A02271D /* Pods */,
+				1950474720C4D2E93E5E1FF1 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		BBE27C481BBA588B0051A3E1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BBE27C471BBA588B0051A3E1 /* JRApiTestingProject.app */,
+				BBE27C5C1BBA588C0051A3E1 /* JRApiTestingProjectTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BBE27C491BBA588B0051A3E1 /* JRApiTestingProject */ = {
+			isa = PBXGroup;
+			children = (
+				BBE27C811BBA700B0051A3E1 /* QCloudAppParamEncryptTool.h */,
+				BBE27C821BBA700B0051A3E1 /* QCloudAppParamEncryptTool.m */,
+				BBE27C7B1BBA5DA30051A3E1 /* JRPickerView.swift */,
+				BBE27C4C1BBA588B0051A3E1 /* AppDelegate.swift */,
+				BBE27C741BBA5A080051A3E1 /* AppParamEncryptUtil.swift */,
+				BBE27C761BBA5BA80051A3E1 /* Dao.swift */,
+				BBE27C531BBA588B0051A3E1 /* Images.xcassets */,
+				BBE27C7A1BBA5BF00051A3E1 /* JRApiTestingProject-Bridging-Header.h */,
+				BBE27C551BBA588C0051A3E1 /* LaunchScreen.xib */,
+				BBE27C721BBA59ED0051A3E1 /* Log.swift */,
+				BBE27C501BBA588B0051A3E1 /* Main.storyboard */,
+				BBE27C6C1BBA58F80051A3E1 /* NetworkTestingViewController.swift */,
+				BBE27C6D1BBA58F80051A3E1 /* NetworkTestingViewController.xib */,
+				BBE27C7D1BBA634D0051A3E1 /* NetworkTestingTableViewCell.swift */,
+				BBE27C7E1BBA634D0051A3E1 /* NetworkTestingTableViewCell.xib */,
+				BBE27C4A1BBA588B0051A3E1 /* Supporting Files */,
+				BBE27C701BBA59940051A3E1 /* System.swift */,
+				BBE27C4E1BBA588B0051A3E1 /* ViewController.swift */,
+				BB47687C1BBB807D005E367D /* EncryptTestViewController.swift */,
+				BB47687D1BBB807D005E367D /* EncryptTestViewController.xib */,
+			);
+			path = JRApiTestingProject;
+			sourceTree = "<group>";
+		};
+		BBE27C4A1BBA588B0051A3E1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BBE27C4B1BBA588B0051A3E1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BBE27C5F1BBA588C0051A3E1 /* JRApiTestingProjectTests */ = {
+			isa = PBXGroup;
+			children = (
+				BBE27C621BBA588C0051A3E1 /* JRApiTestingProjectTests.swift */,
+				BBE27C601BBA588C0051A3E1 /* Supporting Files */,
+			);
+			path = JRApiTestingProjectTests;
+			sourceTree = "<group>";
+		};
+		BBE27C601BBA588C0051A3E1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				BBE27C611BBA588C0051A3E1 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		BBE27C461BBA588B0051A3E1 /* JRApiTestingProject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBE27C661BBA588C0051A3E1 /* Build configuration list for PBXNativeTarget "JRApiTestingProject" */;
+			buildPhases = (
+				D8ACE5E8EEEFB677E05672D4 /* Check Pods Manifest.lock */,
+				BBE27C431BBA588B0051A3E1 /* Sources */,
+				BBE27C441BBA588B0051A3E1 /* Frameworks */,
+				BBE27C451BBA588B0051A3E1 /* Resources */,
+				EC228CB6A3474B70B574388D /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = JRApiTestingProject;
+			productName = JRApiTestingProject;
+			productReference = BBE27C471BBA588B0051A3E1 /* JRApiTestingProject.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BBE27C5B1BBA588C0051A3E1 /* JRApiTestingProjectTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BBE27C691BBA588C0051A3E1 /* Build configuration list for PBXNativeTarget "JRApiTestingProjectTests" */;
+			buildPhases = (
+				BBE27C581BBA588C0051A3E1 /* Sources */,
+				BBE27C591BBA588C0051A3E1 /* Frameworks */,
+				BBE27C5A1BBA588C0051A3E1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BBE27C5E1BBA588C0051A3E1 /* PBXTargetDependency */,
+			);
+			name = JRApiTestingProjectTests;
+			productName = JRApiTestingProjectTests;
+			productReference = BBE27C5C1BBA588C0051A3E1 /* JRApiTestingProjectTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BBE27C3F1BBA588B0051A3E1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0640;
+				ORGANIZATIONNAME = "qi-cloud.com";
+				TargetAttributes = {
+					BBE27C461BBA588B0051A3E1 = {
+						CreatedOnToolsVersion = 6.4;
+					};
+					BBE27C5B1BBA588C0051A3E1 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = BBE27C461BBA588B0051A3E1;
+					};
+				};
+			};
+			buildConfigurationList = BBE27C421BBA588B0051A3E1 /* Build configuration list for PBXProject "JRApiTestingProject" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BBE27C3E1BBA588B0051A3E1;
+			productRefGroup = BBE27C481BBA588B0051A3E1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BBE27C461BBA588B0051A3E1 /* JRApiTestingProject */,
+				BBE27C5B1BBA588C0051A3E1 /* JRApiTestingProjectTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BBE27C451BBA588B0051A3E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBE27C6F1BBA58F80051A3E1 /* NetworkTestingViewController.xib in Resources */,
+				BBE27C521BBA588B0051A3E1 /* Main.storyboard in Resources */,
+				BB47687F1BBB807D005E367D /* EncryptTestViewController.xib in Resources */,
+				BBE27C571BBA588C0051A3E1 /* LaunchScreen.xib in Resources */,
+				BBE27C541BBA588B0051A3E1 /* Images.xcassets in Resources */,
+				BBE27C801BBA634D0051A3E1 /* NetworkTestingTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBE27C5A1BBA588C0051A3E1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D8ACE5E8EEEFB677E05672D4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EC228CB6A3474B70B574388D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BBE27C431BBA588B0051A3E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBE27C711BBA59940051A3E1 /* System.swift in Sources */,
+				BB47687E1BBB807D005E367D /* EncryptTestViewController.swift in Sources */,
+				BBE27C7F1BBA634D0051A3E1 /* NetworkTestingTableViewCell.swift in Sources */,
+				BBE27C751BBA5A080051A3E1 /* AppParamEncryptUtil.swift in Sources */,
+				BBE27C7C1BBA5DA30051A3E1 /* JRPickerView.swift in Sources */,
+				BBE27C4F1BBA588B0051A3E1 /* ViewController.swift in Sources */,
+				BBE27C831BBA700B0051A3E1 /* QCloudAppParamEncryptTool.m in Sources */,
+				BBE27C731BBA59ED0051A3E1 /* Log.swift in Sources */,
+				BBE27C4D1BBA588B0051A3E1 /* AppDelegate.swift in Sources */,
+				BBE27C6E1BBA58F80051A3E1 /* NetworkTestingViewController.swift in Sources */,
+				BBE27C771BBA5BA80051A3E1 /* Dao.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BBE27C581BBA588C0051A3E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BBE27C631BBA588C0051A3E1 /* JRApiTestingProjectTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		BBE27C5E1BBA588C0051A3E1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BBE27C461BBA588B0051A3E1 /* JRApiTestingProject */;
+			targetProxy = BBE27C5D1BBA588C0051A3E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		BBE27C501BBA588B0051A3E1 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBE27C511BBA588B0051A3E1 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		BBE27C551BBA588C0051A3E1 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BBE27C561BBA588C0051A3E1 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		BBE27C641BBA588C0051A3E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BBE27C651BBA588C0051A3E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		BBE27C671BBA588C0051A3E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EE2B709F63194D75FC242D66 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JRApiTestingProject/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-D DEBUG";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JRApiTestingProject/JRApiTestingProject-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		BBE27C681BBA588C0051A3E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2652301D8A2ABB7A63D7CB8B /* Pods.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = JRApiTestingProject/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "JRApiTestingProject/JRApiTestingProject-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		BBE27C6A1BBA588C0051A3E1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = JRApiTestingProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JRApiTestingProject.app/JRApiTestingProject";
+			};
+			name = Debug;
+		};
+		BBE27C6B1BBA588C0051A3E1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = JRApiTestingProjectTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/JRApiTestingProject.app/JRApiTestingProject";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BBE27C421BBA588B0051A3E1 /* Build configuration list for PBXProject "JRApiTestingProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBE27C641BBA588C0051A3E1 /* Debug */,
+				BBE27C651BBA588C0051A3E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBE27C661BBA588C0051A3E1 /* Build configuration list for PBXNativeTarget "JRApiTestingProject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBE27C671BBA588C0051A3E1 /* Debug */,
+				BBE27C681BBA588C0051A3E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBE27C691BBA588C0051A3E1 /* Build configuration list for PBXNativeTarget "JRApiTestingProjectTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BBE27C6A1BBA588C0051A3E1 /* Debug */,
+				BBE27C6B1BBA588C0051A3E1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BBE27C3F1BBA588B0051A3E1 /* Project object */;
+}

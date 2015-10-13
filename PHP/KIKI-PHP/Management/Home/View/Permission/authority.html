@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Authority - {$title}</title>
+</head>
+<body>
+<include file="Framework/framework"/>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <header>
+        <div class="row title">
+            <div class="col-md-12">
+                <h3>
+                    <ol class="breadcrumb">
+                        <li><i class="glyphicon glyphicon-chevron-right"></i>
+                            <a href="{$currentURL}">{$controllerName}</a>
+                        </li>
+                        <li> {$actionName}</li>
+                    </ol>
+                </h3>
+            </div>
+        </div>
+    </header>
+</div>
+</body>
+</html>

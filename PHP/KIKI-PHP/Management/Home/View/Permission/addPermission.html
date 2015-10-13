@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>addPermission - {$title}</title>
+</head>
+<body>
+<include file="Framework/framework"/>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <header>
+        <div class="row title">
+            <div class="col-md-12">
+                <h3>
+                    <ol class="breadcrumb">
+                        <li><i class="glyphicon glyphicon-chevron-right"></i>
+                            <a href="{$currentURL}">{$controllerName}</a>
+                        </li>
+                        <li> {$actionName}</li>
+                    </ol>
+                </h3>
+            </div>
+        </div>
+    </header>
+    <div class="adder">
+        <form class="form-horizontal" enctype="multipart/form-data" id="new_menu" method="post"
+              action="{:U('Permission/addNewPermission')}">
+            <div id="body-wrap" width="60%" class="breadcrumb">
+                <div class="form-group row has-feedback" style="margin-top: 20px;">
+                    <label for="permission-name" class="col-sm-2 control-label">*权限名称：</label>
+                    <div class="col-sm-4">
+                        <input id="permission-name" type="text" class="form-control" name="new_permission[name]" placeholder="请输入权限自定义名称"
+                               style="display:inline-block;width: 90%;" required>
+                    </div>
+                </div>
+
+                <div class="form-group row has-feedback" style="margin-top: 20px;">
+                    <label for="menu-url" class="col-sm-2 control-label">*对应URL：</label>
+
+                    <div class="col-sm-4">
+                        <select class="form-control" name="new_permission[id_menu]">
+                            <option value="0" selected>请选择</option>
+                            <volist name="menu_list" id="vo">
+                                <option value="{$vo.id}">{$vo.name}[{$vo.url}]</option>
+                            </volist>
+                        </select>
+                    </div>
+                    <p class="help-block">选择权限对应的菜单(页面\功能)URL。</p>
+                </div>
+
+                <div class="form-group row has-feedback">
+                    <label for="menu-type" class="col-sm-2 control-label">权限类别</label>
+                    <div class="col-sm-4">
+                        <select id="menu-type" name="new_permission[type]" class="form-control">
+                            <option value="0" selected>全局可用</option>
+                            <option value="1">仅前端可用</option>
+                            <option value="2">仅后台可用</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row has-feedback">
+                    <label for="permission-introduction" class="col-sm-2 control-label">权限描述：</label>
+
+                    <div class="col-sm-4">
+                        <input id="permission-introduction" type="text" class="form-control" name="new_permission[introduction]" placeholder="权限的详细描述"
+                               style="display:inline-block;width: 90%;">
+                    </div>
+                </div>
+
+                <div class="form-group row has-feedback" style="margin-top: 20px;">
+                    <label for="menu-available" class="col-sm-2 control-label">权限是否可用：</label>
+                    <div class="col-sm-4">
+                        <select id="menu-available" class="form-control" name="new_permission[isenabled]">
+                            <option value="1">启用</option>
+                            <option value="0">不可用</option>
+                        </select>
+                    </div>
+                    <p class="help-block">是否启用该权限。</p>
+                </div>
+
+                <div class="form-group row" style="margin-top: 20px;">
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary" style="margin-left: 100px;;">保存</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

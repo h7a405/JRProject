@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>index - {$title}</title>
+</head>
+<body>
+<include file="Framework/framework"/>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <header>
+        <div class="row title">
+            <div class="col-md-12">
+                <h3>
+                    <ol class="breadcrumb">
+                        <li><i class="glyphicon glyphicon-chevron-right"></i>
+                            <a href="{$currentURL}">{$controllerName}</a>
+                        </li>
+                        <li> {$actionName}</li>
+                    </ol>
+                </h3>
+            </div>
+        </div>
+    </header>
+    <div class="table-responsive breadcrumb">
+        <caption>
+            <form class="bs-example bs-example-form form-inline" role="form" method="get" action="{:U('Permission/index')}">
+                <div class="row">
+                    <div class="form-inline pull-right">
+                        <div class="btn-toolbar" role="toolbar">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-default" value="20" name="pageSize">默认</button>
+                                <button type="submit" class="btn btn-default" value="5" name="pageSize">5条</button>
+                                <button type="submit" class="btn btn-default" value="15" name="pageSize">15条</button>
+                                <button type="submit" class="btn btn-default" value="30" name="pageSize">30条</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-offset-0 row">
+                        <div class="form-inline">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group">
+                                    <button type="submit" class="btn btn-default" value="-1" name="type">全部</button>
+                                    <button type="submit" class="btn btn-inverse" value="0" name="type">全局通用</button>
+                                    <button type="submit" class="btn btn-danger" value="1" name="type">仅限前台</button>
+                                    <button type="submit" class="btn btn-info" value="2" name="type">仅限后台</button>
+                                </div>
+                                <div class="btn-group" style="margin-left: 50px;">
+                                    <button type="submit" class="btn btn-default" value="-1" name="isenabled">全部</button>
+                                    <button type="submit" class="btn btn-inverse" value="0" name="isenabled">不可用</button>
+                                    <button type="submit" class="btn btn-success" value="1" name="isenabled">启用中</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--<div class="col-lg-8 form-inline">-->
+                    <!--<div class="form-group">-->
+                    <!--<p class="help-block">(搜索的为括号内内容)</p></div>-->
+                    <!--<div class="control-label form-group">-->
+                    <!--<select name="keywordType" class="form-control">-->
+                    <!--<option value="" selected>选择搜索字段</option>-->
+                    <!--<volist name="fields" id="vo">-->
+                    <!--<option value="{$vo.value}">{$vo.name}</option>-->
+                    <!--</volist>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="form-group input-group">-->
+                    <!--<input type="text" class="form-control" name="keyword">-->
+
+                    <!--<span class="input-group-btn">-->
+                    <!--<button class="btn btn-default" type="submit">-->
+                    <!--<i class="glyphicon glyphicon-search"></i>-->
+                    <!--</button>-->
+                    <!--</span>-->
+                    <!--</div>-->
+                    <!--&lt;!&ndash; /input-group &ndash;&gt;-->
+                    <!--</div>-->
+                    <!-- /.col-lg-6 -->
+                </div>
+                <!-- /.row -->
+            </form>
+
+        </caption>
+
+        <table class="table table-hover table-condensed" style="background-color: white; margin-top: 20px;">
+            <thead>
+            <tr>
+                <th>操作</th>
+                <th>权限名</th>
+                <th>对应URL</th>
+                <th>添加时间</th>
+                <th>添加人</th>
+                <th>权限类别</th>
+                <th>权限描述</th>
+                <th>是否启用</th>
+            </tr>
+            </thead>
+            <tbody id="menu-list-content">
+            <volist name="list" id="vo">
+                <tr>
+                    <td><a class="btn btn-sm btn-warning" href="{$vo.edit_url}">编辑</a></td>
+                    <td>{$vo.name}</td>
+                    <td>{$vo.url}</td>
+                    <td>{$vo.datetime_added}</td>
+                    <td>{$vo.username_added}</td>
+                    <td>
+                        <if condition="$vo.type eq 0">
+                            <span class="label label-default">全局通用</span>
+                            <elseif condition="$vo.type eq 1"/>
+                            <span class="label label-danger">仅限前台</span>
+                            <elseif condition="$vo.type eq 2"/>
+                            <span class="label label-info">仅限后台</span>
+                        </if>
+                    </td>
+                    <td>{$vo.introduction}</td>
+                    <td>
+                        <if condition="$vo.isenabled eq 0">
+                            <span class="label label-default">不可用</span>
+                            <else />
+                            <span class="label label-success">启用中</span>
+                        </if>
+                    </td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!--翻页-->
+<div align="center">
+    {$page}
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Sign up - {$websiteBaseInfo.title}</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/signup.css">
+</head>
+<body>
+<include file="Framework/framework_header"/>
+    <div class="container">
+        <div class="panel panel-default panel-signup">
+            <form class="form-signup">
+                <h2 class="form-signup-heading">Sign up</h2>
+                <label for="inputName" class="sr-only">Name</label>
+                <input id="inputName" class="form-control" placeholder="Name" required="" type="text">
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" type="email">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+                <label for="inputPasswordAgain" class="sr-only">Re-enter Password</label>
+                <input id="inputPasswordAgain" class="form-control" placeholder="Re-enter Password" required="" type="password">
+                <div class="checkbox">
+                    <label>
+                        <input value="remember-me" type="checkbox"> Receive occasional updates with our favorite projects and the latest news
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-success btn-block" type="submit">Sign up now!</button>
+            </form>
+            <p class="help-block">By signing up, you agree to our terms of use, privacy policy, and cookie policy. </p>
+            <div class="panel-footer">Have an account? <a href="{:U('User/Login')}">Log in</a></div>
+        </div>
+        <include file="Framework/framework_footer"/>
+    </div>
+
+</body>
+</html>

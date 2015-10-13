@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Log in - {$websiteBaseInfo.title}</title>
+    <link rel="stylesheet" href="__PUBLIC__/css/login.css">
+</head>
+<body>
+<include file="Framework/framework_header"/>
+
+    <div class="container">
+        <div class="panel panel-default panel-signup">
+            <form class="form-signup">
+                <h2 class="form-signup-heading">Log in</h2>
+                <label for="inputEmail" class="sr-only">Email</label>
+                <input id="inputEmail" class="form-control" placeholder="Email" required="" autofocus="" type="email">
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input id="inputPassword" class="form-control" placeholder="Password" required="" type="password">
+                <div class="checkbox">
+                    <button class="btn btn-sm pull-right" type="button" data-toggle="modal" data-target="#myModal">Forgot Password?</button>
+                    <label>
+                        <input value="remember-me" type="checkbox" checked> remember me
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-success btn-block btn-login" type="submit">Log me in!</button>
+            </form>
+            <div class="panel-footer">New here? <a href="{:U('User/signup')}">Sign up</a></div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Enter the email address you used to sign up and we'll send you a link to reset your password.</h4>
+                    </div>
+                    <div class="modal-body">
+                        <label for="inputForgot" class="sr-only">E-mail</label>
+                        <input class="form-control" id="inputForgot" placeholder="E-mail" type="email">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-primary">Continue</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <include file="Framework/framework_footer"/>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>System - {$title}</title>
+</head>
+<body>
+<include file="Framework/framework"/>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <header>
+        <div class="row title">
+            <div class="col-md-12">
+                <h3>
+                    <ol class="breadcrumb">
+                        <li><i class="glyphicon glyphicon-chevron-right"></i>
+                            <a href="{$currentURL}">{$controllerName}</a>
+                        </li>
+                        <li> {$actionName}</li>
+                    </ol>
+                </h3>
+            </div>
+        </div>
+    </header>
+    <div class="breadcrumb">
+        <table class="table table-bordered" style="width:55%; background-color: white; margin-top:10px;">
+            <tr>
+                <td width="25%"><label class="control-label">系统名称：</label></td>
+                <td><label id="system-name" value="{$system.name}">{$system.name}</label></td>
+            </tr>
+            <tr>
+                <td><label class="control-label">IP地址：</label></td>
+                <td><label id="system-ipAddress" value="{$system.ip}">{$system.ip}</label></td>
+            </tr>
+            <tr>
+                <td><label class="control-label">网站域名：</label></td>
+                <td><label id="system-domain" value="{$system.domain}">{$system.domain}</label></td>
+            </tr>
+            <tr>
+                <td><label class="control-label">关键词：</label></td>
+                <td><label id="system-intro" value="{$system.introduction}">{$system.introduction}</label></td>
+            </tr>
+            <tr>
+                <td><label class="control-label">前台状态：</label></td>
+                <td>
+                    <if condition="$system.iskikiopened eq 0"><span class="label label-warning">已关闭</span>
+                    </if>
+                    <if condition="$system.iskikiopened eq 1"><span class="label label-success">开启中</span></if>
+                    <!--<label name="system[status]" id="system-status" value="{$system.status}">{$system.status}</label>-->
+                </td>
+            </tr>
+            <tr>
+                <td><label class="control-label">系统状态：</label></td>
+                <td>
+                    <if condition="$system.issystemopened eq 0"><span class="label label-warning">已关闭</span>
+                    </if>
+                    <if condition="$system.issystemopened eq 1"><span class="label label-success">开启中</span></if>
+                    <!--<label name="system[status]" id="system-status" value="{$system.status}">{$system.status}</label>-->
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div style="margin-top:20px;margin-bottom:10px;border-bottom: 1px solid #999999;color: #999999">
+        修改信息：
+    </div>
+    <form class="form-horizontal" enctype="multipart/form-data" id="edit_system" method="post"
+          action="{:U('System/editSystemInfo')}">
+        <div id="body-wrap" width="60%" class="breadcrumb">
+            <div class="form-group row has-feedback" style="margin-top: 20px;">
+                <label for="name" class="col-sm-2 control-label">系统名称：</label>
+
+                <div class="col-sm-4">
+                    <input id="name" type="text" class="form-control" name="system[name]" placeholder="请输入系统名称"
+                           style="display:inline-block;width: 90%;" value="{$system.name}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">IP地址：</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="system[ip]" placeholder="如无，请留空"
+                           style="display:inline-block;width: 90%;" value="{$system.ip}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">网站域名：</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="system[domain]" placeholder="如无，请留空"
+                           style="display:inline-block;width: 90%;" value="{$system.domain}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">关键词：</label>
+
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" name="system[introduction]" placeholder="多个用,隔开"
+                           style="display:inline-block;width: 90%;" value="{$system.introduction}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="iskikiopened" class="col-sm-2 control-label">前台状态：</label>
+
+                <div class="col-sm-2">
+                    <select id="iskikiopened" name="system[iskikiopened]" class="form-control">
+                        <if condition="$system.iskikiopened eq 0">
+                            <option value="1" >开启</option>
+                            <option value="0" selected>关闭</option>
+                            <else />
+                            <option value="1" selected>开启</option>
+                            <option value="0">关闭</option>
+                        </if>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="issystemopened" class="col-sm-2 control-label">系统状态：</label>
+
+                <div class="col-sm-2">
+                    <select id="issystemopened" name="system[issystemopened]" class="form-control">
+                        <if condition="$system.issystemopened eq 0">
+                            <option value="1" >开启</option>
+                            <option value="0" selected>关闭</option>
+                            <else />
+                            <option value="1" selected>开启</option>
+                            <option value="0">关闭</option>
+                        </if>
+
+                    </select>
+                </div>
+                <p class="help-block">*请勿随意关闭系统</p>
+            </div>
+
+            <div class="form-group row" style="margin-top: 20px;">
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary" style="margin-left: 100px;;">保存</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

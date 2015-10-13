@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Menu edit - {$title}</title>
+</head>
+<body>
+<include file="Framework/framework"/>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <header>
+        <div class="row title">
+            <div class="col-md-12">
+                <h3>
+                    <ol class="breadcrumb">
+                        <li><i class="glyphicon glyphicon-chevron-right"></i>
+                            <a href="{$currentURL}">{$controllerName}</a>
+                        </li>
+                        <li> {$actionName}</li>
+                    </ol>
+                </h3>
+            </div>
+        </div>
+    </header>
+    <div class="form-horizontal">
+        <div id="body-wrap" class="breadcrumb">
+            <div class="form-group row has-feedback">
+                <label for="menu-name" class="col-sm-2 control-label">菜单名：</label>
+                <div class="col-sm-4">
+                    <label class="control-label" name="menu[name]" id="menu-name" value="{$menu.name}">{$menu.name}</label>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="menu-url" class="col-sm-2 control-label">菜单URL：</label>
+                <div class="col-sm-4">
+                    <label class="control-label" name="menu[password]" id="menu-url" value="{$menu.url}">{$menu.url}</label>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="menu-addedDate" class="col-sm-2 control-label">创建日期：</label>
+                <div class="col-sm-4">
+                    <label class="control-label" name="menu[addedDate]" id="menu-addedDate" value="{$menu.datetime_added}">{$menu.datetime_added}</label>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="menu-addedBy" class="col-sm-2 control-label">创建人：</label>
+                <div class="col-sm-4">
+                    <label class="control-label" name="menu[addedBy]" id="menu-addedBy" value="{$menu.username_added}">{$menu.username_added}</label>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="menu-type" class="col-sm-2 control-label">菜单类型</label>
+                <div class="col-sm-2" id="menu-type">
+                    <if condition="$menu.type eq 0">
+                        <span class="label label-default">未定义</span>
+                        <elseif condition="$menu.type eq 1"/>
+                        <span class="label label-danger">控制器(模块)</span>
+                        <elseif condition="$menu.type eq 2"/>
+                        <span class="label label-info">页面</span>
+                        <else />
+                        <span class="label label-warning">动作(功能,方法)</span>
+                    </if>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="menu-father" class="col-sm-2 control-label">父级菜单：</label>
+                <div class="col-sm-2" id="menu-father">
+                    <if condition="$menu.level eq 0">
+                        <span class="label label-danger control-label">父级菜单</span>
+                    <else />
+                        <span class="label label-info control-label">{$menu.name_father}</span>
+                    </if>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="menu-visible" class="col-sm-2 control-label">是否可见：</label>
+                <div class="col-sm-2" id="menu-visible">
+                    <if condition="$menu.isvisible eq 0">
+                        <span class="label label-default control-label">不可见</span>
+                        <else />
+                        <span class="label label-success control-label">可见</span>
+                    </if>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="menu-introduction" class="col-sm-2 control-label">菜单描述：</label>
+                <div class="col-sm-4">
+                    <label class="control-label" name="menu[introduction]" id="menu-introduction" value="{$menu.introduction}">{$menu.introduction}</label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <form class="form-horizontal" enctype="multipart/form-data" method="post" action="{:U('Menu/editTheMenu')}" style="margin-top: 20px;">
+            <input type="hidden" name="edit_menu[id]" id="menu-id" value="{$menu.id}">
+            <div class="form-group row has-feedback">
+                <label for="edit_menu-name" class="col-sm-2 control-label">更改菜单名：</label>
+                <div class="col-sm-4">
+                    <input type="text" id="edit_menu-name" class="form-control" name="edit_menu[name]" placeholder="菜单的名称" style="display:inline-block;width: 60%;" value="{$menu.name}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="edit_menu-url" class="col-sm-2 control-label">更改菜单URL：</label>
+                <div class="col-sm-4">
+                    <input type="text" id="edit_menu-url" class="form-control" name="edit_menu[url]" placeholder="菜单的url" style="display:inline-block;width: 60%;" value="{$menu.url}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="edit_menu-introduction" class="col-sm-2 control-label">更改菜单描述：</label>
+                <div class="col-sm-4">
+                    <input type="text" id="edit_menu-introduction" class="form-control" name="edit_menu[introduction]" placeholder="菜单的描述" style="display:inline-block;width: 60%;" value="{$menu.introduction}">
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">更改菜单类型</label>
+                <div class="col-sm-4">
+                    <select id="edit_menu-type" name="edit_menu[type]" class="form-control">
+                        <if condition="$menu.type eq 0">
+                            <option value="0" selected>当前:未定义</option>
+                            <elseif condition="$menu.type eq 1"/>
+                            <option value="1" selected>控制器(模块)</option>
+                            <elseif condition="$menu.type eq 2"/>
+                            <option value="2" selected>页面</option>
+                            <else />
+                            <option value="3" selected>动作(功能,方法)</option>
+                        </if>
+                        <option value="0">不定义</option>
+                        <option value="1">控制器(模块)[默认父级]</option>
+                        <option value="2">页面</option>
+                        <option value="3">动作(功能, 方法)[默认不可见]</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label class="col-sm-2 control-label">更改上级菜单：</label>
+
+                <div class="col-sm-4">
+                    <select id="tag" name="edit_menu[id_father]" class="form-control">
+                        <if condition="$menu.level eq 0">
+                            <option value="0" selected>无</option>
+                        <else />
+                            <option value="{$menu.id_father}" selected>{$menu.name_father}</option>
+                            <option value="0">无</option>
+                        </if>
+                        <volist id="menu_father" name="menuList">
+                            <option value="{$menu_father.id}">{$menu_father.name}[{$menu_father.url}]{$menu_father.visible}</option>
+                        </volist>
+                    </select>
+                </div>
+                <p class="help-block">如选择无则代表是模块。</p>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="isEnabled" class="col-sm-2 control-label">更改是否可见：</label>
+
+                <div class="col-sm-2">
+                    <select id="isEnabled" name="edit_menu[isvisible]" class="form-control">
+                        <if condition="$menu.isvisible eq 0">
+                            <option value="0" selected>隐藏中</option>
+                            <option value="1">可见</option>
+                        <else />
+                            <option value="1" selected>可见</option>
+                            <option value="0">隐藏</option>
+                        </if>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row has-feedback">
+                <label for="isAvailable" class="col-sm-2 control-label">更改是否启用：</label>
+
+                <div class="col-sm-2">
+                    <select id="isAvailable" name="edit_menu[isavailable]" class="form-control">
+                        <if condition="$menu.isavailable eq 0">
+                            <option value="0" selected>不可用</option>
+                            <option value="1">启用</option>
+                            <else />
+                            <option value="1" selected>启用</option>
+                            <option value="0">不可用</option>
+                        </if>
+
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row" style="margin-top: 20px;">
+                <div class="col-md-2">
+                    <button type="submit" class="btn btn-primary" style="margin-left: 100px;">保存</button>
+                </div>
+                <div class="col-sm-4">
+                    <a href="javascript:history.go(-1);">
+                        <span class="btn btn-default">返回</span>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

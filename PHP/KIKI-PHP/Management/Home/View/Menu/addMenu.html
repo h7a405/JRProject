@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Menu - {$title}</title>
+</head>
+<body>
+<include file="Framework/framework"/>
+<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+    <header>
+        <div class="row title">
+            <div class="col-md-12">
+                <h3>
+                    <ol class="breadcrumb">
+                        <li><i class="glyphicon glyphicon-chevron-right"></i>
+                            <a href="{$currentURL}">{$controllerName}</a>
+                        </li>
+                        <li> {$actionName}</li>
+                    </ol>
+                </h3>
+            </div>
+        </div>
+    </header>
+    <div class="adder">
+        <form class="form-horizontal" enctype="multipart/form-data" id="new_menu" method="post"
+              action="{:U('Menu/addNewMenu')}">
+            <div id="body-wrap" width="60%" class="breadcrumb">
+                <div class="form-group row has-feedback" style="margin-top: 20px;">
+                    <label for="menu-name" class="col-sm-2 control-label">*菜单名称：</label>
+                    <div class="col-sm-4">
+                        <input id="menu-name" type="text" class="form-control" name="new_menu[name]" placeholder="请输入菜单名称"
+                               style="display:inline-block;width: 90%;" required>
+                    </div>
+                </div>
+
+                <div class="form-group row has-feedback" style="margin-top: 20px;">
+                    <label for="menu-url" class="col-sm-2 control-label">*菜单URL：</label>
+
+                    <div class="col-sm-4">
+                        <input id="menu-url" type="text" class="form-control" name="new_menu[url]" placeholder="请输入菜单的URL"
+                               style="display:inline-block;width: 90%;" required>
+                    </div>
+                    <p class="help-block">如登录模块(Login) 或 登录页面(login)。</p>
+                </div>
+
+                <div class="form-group row has-feedback">
+                    <label for="menu-type" class="col-sm-2 control-label">定义菜单类别</label>
+                    <div class="col-sm-4">
+                        <select id="menu-type" name="new_menu[type]" class="form-control">
+                            <option value="0" selected>不定义</option>
+                            <option value="1">控制器(模块)[默认父级]</option>
+                            <option value="2">页面</option>
+                            <option value="3">动作(功能, 方法)[默认不可见]</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row has-feedback">
+                    <label for="menu-father" class="col-sm-2 control-label">*上级菜单：</label>
+
+                    <div class="col-sm-4">
+                        <select id="menu-father" name="new_menu[id_father]" class="form-control">
+                            <option value="0" selected>无</option>
+                            <volist id="menu_father" name="menu_father">
+                                <option value="{$menu_father.id}">{$menu_father.name}[{$menu_father.url}]{$menu_father.visible}</option>
+                            </volist>
+                        </select>
+                    </div>
+                    <p class="help-block">如选择无则代表是模块。</p>
+                </div>
+
+                <div class="form-group row has-feedback">
+                    <label for="menu-introduction" class="col-sm-2 control-label">菜单描述：</label>
+
+                    <div class="col-sm-4">
+                        <input id="menu-introduction" type="text" class="form-control" name="new_menu[introduction]" placeholder="菜单的详细描述"
+                               style="display:inline-block;width: 90%;">
+                    </div>
+                </div>
+
+                <div class="form-group row has-feedback" style="margin-top: 20px;">
+                    <label for="menu-visible" class="col-sm-2 control-label">菜单是否可见：</label>
+                    <div class="col-sm-4">
+                        <select id="menu-visible" class="form-control" name="new_menu[isvisible]">
+                            <option value="1">可见</option>
+                            <option value="0">不可见</option>
+                        </select>
+                    </div>
+                    <p class="help-block">该菜单是否在左侧导航栏显示。</p>
+                </div>
+
+                <div class="form-group row has-feedback" style="margin-top: 20px;">
+                    <label for="menu-available" class="col-sm-2 control-label">菜单是否可用：</label>
+                    <div class="col-sm-4">
+                        <select id="menu-available" class="form-control" name="new_menu[isavailable]">
+                            <option value="1">启用</option>
+                            <option value="0">不可用</option>
+                        </select>
+                    </div>
+                    <p class="help-block">该菜单是否在左侧导航栏可用。</p>
+                </div>
+
+                <div class="form-group row" style="margin-top: 20px;">
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-primary" style="margin-left: 100px;;">保存</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

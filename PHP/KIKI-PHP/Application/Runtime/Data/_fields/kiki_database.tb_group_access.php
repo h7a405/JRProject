@@ -1,0 +1,1 @@
+a:8:{i:0;s:2:"id";i:1;s:10:"added_date";i:2;s:8:"added_by";i:3;s:5:"level";i:4;s:8:"acces_id";i:5;s:6:"enable";s:3:"_pk";s:2:"id";s:5:"_type";a:6:{s:2:"id";s:7:"int(11)";s:10:"added_date";s:8:"datetime";s:8:"added_by";s:6:"int(8)";s:5:"level";s:10:"tinyint(4)";s:8:"acces_id";s:6:"int(8)";s:6:"enable";s:10:"tinyint(1)";}}
