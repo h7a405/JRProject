@@ -18,10 +18,17 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="X6Y-hM-mu2"/>
+                    <navigationItem key="navigationItem" id="X6Y-hM-mu2">
+                        <barButtonItem key="rightBarButtonItem" title="搜索" id="g0F-5o-hE6">
+                            <connections>
+                                <action selector="didScanDevicesButtonClicked:" destination="BYZ-38-t0r" id="rPu-CF-KEM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="265" y="320"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="kHf-vp-Lvg">
