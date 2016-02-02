@@ -224,8 +224,11 @@ extension ViewController : CBCentralManagerDelegate {
             alertController.addAction(confirmAction)
             
             self.presentViewController(alertController, animated: true, completion: nil)
+        } else {
+            SVProgressHUD.showInfoWithStatus("没有发现其他设备。")
+            Log.VLog("没有发现其他设备。")
+            self.centralManager.stopScan()
         }
-        
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {

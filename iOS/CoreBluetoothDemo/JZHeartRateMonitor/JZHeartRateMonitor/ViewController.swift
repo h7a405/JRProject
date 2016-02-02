@@ -24,11 +24,14 @@ class ViewController: UIViewController {
     let characteristicUUIDWriteable : CBUUID = CBUUID(string: "632FB3C9-2078-419B-83AA-DBC64B5B685A")
     //MARK: 储存 - Int/Float/Double/String/Bool
     var dataPointer: Int = 0
+    var isDetecting: Bool = false
     //MARK: 集合 - Array/Dictionary/Tuple
     var heartRateDatas: [Int] = Array() //模拟心率数据。只保存10条。
     var subscribedCentral: [CBCentral] = Array()
     //MARK: UIView - UIView/UIControl/UIViewController
     @IBOutlet weak var logs: UITextView!
+    @IBOutlet weak var detectButton: UIButton!
+    @IBOutlet weak var stopButton: UIButton!
     //MARK: Foundation - NS/CG/CA/CF
     
     //MARK: 其他类 - Imported/Included
@@ -65,6 +68,8 @@ class ViewController: UIViewController {
     //改变视图数据
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        self.stopButton.enabled = false
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -103,19 +108,26 @@ extension ViewController {
         let _timer: dispatch_source_t = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)
         dispatch_source_set_timer(_timer, dispatch_walltime(UnsafePointer(), 0), 10 * NSEC_PER_SEC, 0) //每10秒生成一次
         dispatch_source_set_event_handler(_timer, {()
-            if self.dataPointer > 9 {
-                self.dataPointer = 0
-            }
-            let heartRate: Int = 60 + Int(arc4random_uniform(120))
-            if self.heartRateDatas.count > self.dataPointer {
-                self.heartRateDatas[self.dataPointer] = heartRate
+            if !self.isDetecting { //count down finished
+                dispatch_source_cancel(_timer)
+                dispatch_async(dispatch_get_main_queue(), {()
+                    
+                })
             } else {
-                self.heartRateDatas.append(heartRate)
+                dispatch_async(dispatch_get_main_queue(), {()
+                    if self.dataPointer > 9 {
+                        self.dataPointer = 0
+                    }
+                    let heartRate: Int = 60 + Int(arc4random_uniform(120))
+                    if self.heartRateDatas.count > self.dataPointer {
+                        self.heartRateDatas[self.dataPointer] = heartRate
+                    } else {
+                        self.heartRateDatas.append(heartRate)
+                    }
+                    Log.VLog("heart rate: \(heartRate)")
+                })
+                self.dataPointer++
             }
-            dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                Log.VLog("heart rate: \(heartRate)")
-            })
-            self.dataPointer++
         })
         dispatch_resume(_timer)
     }
@@ -148,11 +160,20 @@ extension ViewController {
         (sender as? UIBarButtonItem)?.enabled = false
         (sender as? UIBarButtonItem)?.title = "已启动"
         
-        self.doStartGCDTimer()
+//        self.doStartGCDTimer()
     }
     @IBAction func didUploadDataButtonClicked(sender : AnyObject) {
         self.writeLog("监测仪 - 开始上传数据...")
         self.updateCharacteristicValue()
+    }
+    @IBAction func didDectectButtonClicked(sender: AnyObject) {
+        self.doStartGCDTimer()
+        self.isDetecting = true
+        (sender as? UIButton)?.enabled = false
+        self.stopButton.enabled = true
+    }
+    @IBAction func didStopButtonClicked(sender: AnyObject) {
+        
     }
 }
 //MARK: 回调 - Call Back - doneX()
