@@ -29,6 +29,7 @@ class ViewController: UIViewController {
     var messages: [String] = Array()
     //MARK: UIView - UIView/UIControl/UIViewController
     
+    @IBOutlet weak var tableView: UITableView!
     //MARK: Foundation - NS/CG/CA/CF
     
     //MARK: 其他类 - Imported/Included
@@ -117,6 +118,53 @@ extension ViewController {
 //MARK: 获取 - Getter - getX(), acquiredX(), requestX()
 
 //MARK: 数据源与代理 - DataSrouce & Delegate
+//MARK: UITableViewDataSource
+extension ViewController : UITableViewDataSource {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.peripherals.count
+    }
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cellIdentifier = "cell"
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier)
+        if cell == nil {
+            cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: cellIdentifier)
+        }
+        cell!.textLabel?.text = nil
+        cell!.detailTextLabel?.text = nil
+        
+        if self.peripherals.count > indexPath.row {
+            cell!.textLabel?.text = self.peripherals[indexPath.row].name
+        }
+        if self.messages.count > indexPath.row {
+            cell!.detailTextLabel?.text = self.messages[indexPath.row]
+        }
+        
+        return cell!
+    }
+    
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return nil
+    }
+    func tableView(tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        return nil
+    }
+}
+//MARK: UITableViewDelegate
+extension ViewController : UITableViewDelegate {
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return 60
+    }
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        if self.messages.count > indexPath.row {
+            self.messages[indexPath.row] = ""
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        }
+    }
+}
 //MARK: CBCentralManagerDelegate
 extension ViewController : CBCentralManagerDelegate {
     func centralManagerDidUpdateState(central: CBCentralManager) {
@@ -261,6 +309,7 @@ extension ViewController : CBPeripheralDelegate {
             for (index, peripheralT) in self.peripherals.enumerate() {
                 if peripheral == peripheralT {
                     self.messages[index] = String(valueString)
+                    self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Automatic)
                 }
             }
         } else {
