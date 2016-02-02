@@ -135,11 +135,14 @@ extension ViewController {
     //更新特征值
     func updateCharacteristicValue() {
         //特征值
+        self.writeLog("准备上传数据...")
         let valueStr: String = "\(self.heartRateDatas.toString())"
         if let value: NSData = NSString(string: valueStr).dataUsingEncoding(NSUTF8StringEncoding) {
             //更新特征值
             self.peripheralManager.updateValue(value, forCharacteristic: self.characteristicReadable, onSubscribedCentrals: nil)
             self.writeLog("上传的数据为：" + valueStr)
+        } else {
+            self.writeLog("上传数据失败！")
         }
     }
     
@@ -257,18 +260,10 @@ extension ViewController : CBPeripheralManagerDelegate {
             self.writeLog("监测仪 - 错误的请求")
         }
     }
-    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        guard error == nil else {
-            Log.VLog("发送数据失败，错误信息：\(error?.localizedDescription ?? "")")
-            return
-        }
-        Log.VLog("发送成功。")
-    }
     
     func peripheralManager(peripheral: CBPeripheralManager, didReceiveWriteRequests requests: [CBATTRequest]) {
-        let request = requests[0]
-        self.characteristicReadable.value = request.value
-        self.peripheralManager.respondToRequest(request, withResult: .Success)
+        self.writeLog("监测仪 - 收到中央设备的读取请求。")
+        self.updateCharacteristicValue()
     }
     
     func peripheralManager(peripheral: CBPeripheralManager, central: CBCentral, didSubscribeToCharacteristic characteristic: CBCharacteristic) {
