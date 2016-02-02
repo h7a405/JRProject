@@ -98,7 +98,7 @@ extension Array {
     func toString() -> String {
         var stringToReturn = ""
         for (index, object) in self.enumerate() {
-            stringToReturn += "(\(index)): \(object).\t"
+            stringToReturn += "(\(index)): \(object). "
         }
         return stringToReturn
     }

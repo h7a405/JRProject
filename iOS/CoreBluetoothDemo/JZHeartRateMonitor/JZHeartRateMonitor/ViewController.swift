@@ -135,7 +135,7 @@ extension ViewController {
     //更新特征值
     func updateCharacteristicValue() {
         //特征值
-        let valueStr: String = "[\(NSDate().toString())]:\(self.heartRateDatas.toString())"
+        let valueStr: String = "\(self.heartRateDatas.toString())"
         if let value: NSData = NSString(string: valueStr).dataUsingEncoding(NSUTF8StringEncoding) {
             //更新特征值
             self.peripheralManager.updateValue(value, forCharacteristic: self.characteristicReadable, onSubscribedCentrals: nil)
@@ -173,7 +173,9 @@ extension ViewController {
         self.stopButton.enabled = true
     }
     @IBAction func didStopButtonClicked(sender: AnyObject) {
-        
+        self.isDetecting = false
+        (sender as? UIButton)?.enabled = false
+        self.detectButton.enabled = true
     }
 }
 //MARK: 回调 - Call Back - doneX()
@@ -254,6 +256,13 @@ extension ViewController : CBPeripheralManagerDelegate {
         } else {
             self.writeLog("监测仪 - 错误的请求")
         }
+    }
+    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+        guard error == nil else {
+            Log.VLog("发送数据失败，错误信息：\(error?.localizedDescription ?? "")")
+            return
+        }
+        Log.VLog("发送成功。")
     }
     
     func peripheralManager(peripheral: CBPeripheralManager, didReceiveWriteRequests requests: [CBATTRequest]) {

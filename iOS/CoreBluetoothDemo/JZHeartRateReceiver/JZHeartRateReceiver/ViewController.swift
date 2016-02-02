@@ -36,6 +36,8 @@ class ViewController: UIViewController {
     // 指定当前类为代理对象，所以其需要实现CBCentralManagerDelegate协议
     // 如果queue为nil，则Central管理器使用主队列来发送事件
     lazy var centralManager : CBCentralManager = { return CBCentralManager(delegate: self, queue: nil) }()
+    
+    var characteristicWriteable : CBCharacteristic?
     //MARK: 闭包与结构体 - Closure/Struct
     
     //MARK: 代理与数据源 - delegate/datasource
@@ -171,12 +173,32 @@ extension ViewController : UITableViewDelegate {
     }
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        if self.messages.count > indexPath.row {
-            self.messages[indexPath.row] = ""
-            tableView.beginUpdates()
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            tableView.endUpdates()
+        
+        let alertController = UIAlertController(title: nil, message: "请选择：", preferredStyle: .ActionSheet)
+        let cancelAction = UIAlertAction(title: "返回", style: .Cancel, handler: nil)
+        let fetchAction = UIAlertAction(title: "获取数据", style: .Destructive) { (action: UIAlertAction) -> Void in
+            if self.peripherals.count > indexPath.row {
+                let peripheral = self.peripherals[indexPath.row]
+                let data = NSString(string: "fetch").dataUsingEncoding(NSUTF8StringEncoding)
+                peripheral.writeValue(data!, forCharacteristic: self.characteristicWriteable!, type: .WithResponse)
+            }
         }
+        let cleanAction = UIAlertAction(title: "清除数据", style: .Default) { (action: UIAlertAction) -> Void in
+            if self.messages.count > indexPath.row {
+                self.messages[indexPath.row] = ""
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    tableView.beginUpdates()
+                    tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    tableView.endUpdates()
+                })
+            }
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(fetchAction)
+        alertController.addAction(cleanAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
 }
 //MARK: CBCentralManagerDelegate
@@ -260,6 +282,8 @@ extension ViewController : CBCentralManagerDelegate {
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         Log.VLog("中央 - 连接外围设备失败！错误信息：\(error)")
     }
+    
+    
 }
 //MARK: CBPeripheralDelegate
 extension ViewController : CBPeripheralDelegate {
@@ -292,6 +316,8 @@ extension ViewController : CBPeripheralDelegate {
                 if characteristic.UUID == self.characteristicUUIDReadable {
                     Log.VLog("订阅特征: \(characteristic)")
                     peripheral.setNotifyValue(true, forCharacteristic: characteristic)
+                } else if characteristic.UUID == self.characteristicUUIDWriteable {
+                    self.characteristicWriteable = CBMutableCharacteristic(type: self.characteristicUUIDWriteable, properties: .Notify, value: nil, permissions: .Writeable)
                 }
             }
         } else {
@@ -322,7 +348,7 @@ extension ViewController : CBPeripheralDelegate {
     }
     func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
         guard error == nil else {
-            Log.VLog("外围 - 更新特征值时发生错误，错误信息：\(error?.localizedDescription)")
+            Log.VLog("外围 - 更新特征值时发生错误，错误信息：\(error?.localizedDescription ?? "")")
             return
         }
         if let value = characteristic.value {
@@ -339,6 +365,14 @@ extension ViewController : CBPeripheralDelegate {
         } else {
             Log.VLog("外围 - 未发现特征值。")
         }
+    }
+    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+        guard error == nil else {
+            Log.VLog("发送数据失败，错误信息：\(error?.localizedDescription ?? "")")
+            return
+        }
+        Log.VLog("发送成功。")
+        peripheral.readValueForCharacteristic(characteristic)
     }
 }
 //MARK: - 其他
