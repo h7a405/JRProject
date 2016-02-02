@@ -35,7 +35,7 @@ class ViewController: UIViewController {
     //MARK: 其他类 - Imported/Included
     // 指定当前类为代理对象，所以其需要实现CBCentralManagerDelegate协议
     // 如果queue为nil，则Central管理器使用主队列来发送事件
-    lazy var centralManager : CBCentralManager = { return CBCentralManager(delegate: self, queue: nil) }()
+    let centralManager : CBCentralManager = CBCentralManager(delegate: self, queue: nil)
     //MARK: 闭包与结构体 - Closure/Struct
     
     //MARK: 代理与数据源 - delegate/datasource
