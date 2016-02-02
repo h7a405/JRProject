@@ -57,6 +57,8 @@ class ViewController: UIViewController {
     //改变视图数据
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        self.tableView.tableFooterView = UIView()
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
@@ -98,7 +100,16 @@ extension ViewController {
         // 查找Peripheral设备
         // 如果第一个参数传递nil，则管理器会返回所有发现的Peripheral设备。
         // 通常我们会指定一个UUID对象的数组，来查找特定的设备
-        self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
+        self.centralManager.scanForPeripheralsWithServices([self.serviceUUID], options: nil)
+    }
+    func doConnectToPeripherals() {
+        if self.isScanning == false {
+            for peripheral in self.peripherals {
+                //连接外围设备
+                self.centralManager.connectPeripheral(peripheral, options: nil)
+                Log.VLog("尝试连接到设备\(peripheral.name ?? "")。")
+            }
+        }
     }
 }
 //MARK: 响应方法 - Selector - didX()
@@ -187,9 +198,7 @@ extension ViewController : CBCentralManagerDelegate {
         })
         Log.VLog("扫描到设备: \(peripheral.name ?? "")")
         // 当我们查找到Peripheral端时，我们可以停止查找其它设备，以节省电量
-        if self.peripherals.contains(peripheral) {
-            
-        } else {
+        if !self.peripherals.contains(peripheral) {
             //添加保存外围设备，注意如果这里不保存外围设备（或者说peripheral没有一个强引用，无法到达连接成功（或失败）的代理方法，因为在此方法调用完就会被销毁
             Log.VLog("中央 - 保存外围设备信息。\(peripheral.name ?? "")")
             self.peripherals.append(peripheral)
@@ -201,6 +210,8 @@ extension ViewController : CBCentralManagerDelegate {
                 self.isScanning = false
                 
                 Log.VLog("已停止扫描。")
+                
+                self.doConnectToPeripherals()
             })
             let confirmAction = UIAlertAction(title: "继续扫描", style: .Default, handler: { (action: UIAlertAction) -> Void in
                 SVProgressHUD.showWithMaskType(.Gradient)
@@ -214,12 +225,6 @@ extension ViewController : CBCentralManagerDelegate {
             self.presentViewController(alertController, animated: true, completion: nil)
         }
         
-        if self.isScanning == false {
-            
-            //连接外围设备
-            self.centralManager.connectPeripheral(peripheral, options: nil)
-            Log.VLog("尝试连接到设备\(peripheral.name ?? "")。")
-        }
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {

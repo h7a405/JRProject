@@ -106,19 +106,19 @@ extension ViewController {
         let _timer: dispatch_source_t = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)
         dispatch_source_set_timer(_timer, dispatch_walltime(UnsafePointer(), 0), 10 * NSEC_PER_SEC, 0) //每10秒生成一次
         dispatch_source_set_event_handler(_timer, {()
+            if self.dataPointer > 9 {
+                self.dataPointer = 0
+            }
+            let heartRate: Int = 60 + Int(arc4random_uniform(120))
+            if self.heartRateDatas.count > self.dataPointer {
+                self.heartRateDatas[self.dataPointer] = heartRate
+            } else {
+                self.heartRateDatas.append(heartRate)
+            }
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                if self.dataPointer > 9 {
-                    self.dataPointer = 0
-                }
-                let heartRate: Int = 60 + Int(arc4random_uniform(120))
-                if self.heartRateDatas.count > self.dataPointer {
-                    self.heartRateDatas[self.dataPointer] = heartRate
-                } else {
-                    self.heartRateDatas.append(heartRate)
-                }
                 Log.VLog("heart rate: \(heartRate)")
-                self.dataPointer++
             })
+            self.dataPointer++
         })
         dispatch_resume(_timer)
     }
@@ -211,7 +211,7 @@ extension ViewController : CBPeripheralManagerDelegate {
             self.writeLog("监测仪 - 广播过程中发生错误，错误信息： \(error?.localizedDescription ?? "")")
             return
         }
-        self.writeLog("监测仪 - 已成功广播。")
+        self.writeLog("监测仪 - 已成功广播。等待连接...")
     }
     
     func peripheralManager(peripheral: CBPeripheralManager, didReceiveReadRequest request: CBATTRequest) {
