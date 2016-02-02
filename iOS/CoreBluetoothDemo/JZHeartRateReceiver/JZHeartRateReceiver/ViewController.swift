@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     // 如果queue为nil，则Central管理器使用主队列来发送事件
     lazy var centralManager : CBCentralManager = { return CBCentralManager(delegate: self, queue: nil) }()
     
-    var characteristicWriteable : CBCharacteristic?
+    var characteristicWriteable : CBMutableCharacteristic?
     //MARK: 闭包与结构体 - Closure/Struct
     
     //MARK: 代理与数据源 - delegate/datasource
@@ -323,6 +323,7 @@ extension ViewController : CBPeripheralDelegate {
                     Log.VLog("订阅特征: \(characteristic)")
                     peripheral.setNotifyValue(true, forCharacteristic: characteristic)
                 } else if characteristic.UUID == self.characteristicUUIDWriteable {
+                    Log.VLog(characteristic.properties)
                     self.characteristicWriteable = (characteristic as? CBMutableCharacteristic)
                 }
             }
