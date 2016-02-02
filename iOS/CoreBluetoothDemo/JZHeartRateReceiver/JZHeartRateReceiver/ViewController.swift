@@ -330,7 +330,7 @@ extension ViewController : CBPeripheralDelegate {
             Log.VLog(String(valueString ?? ""))
             for (index, peripheralT) in self.peripherals.enumerate() {
                 if peripheral == peripheralT {
-                    self.messages[index] = String(valueString)
+                    self.messages[index] = String(valueString ?? "")
                     self.tableView.beginUpdates()
                     self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Automatic)
                     self.tableView.endUpdates()
