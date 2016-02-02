@@ -14,19 +14,21 @@
 //MARK: - 头文件
 import UIKit
 import CoreBluetooth
+import SVProgressHUD
 //MARK: - 类函数
 class ViewController: UIViewController {
     //MARK: 类属性
-    let peripheralName : String = String("Heart Rate Monitor")
+    let peripheralName : String = String("Heart Rate Simulate Monitor")
     let serviceUUID : CBUUID = CBUUID(string: "3655296F-96CE-44D4-912D-CD83F06E7E7E")
     let characteristicUUIDReadable : CBUUID = CBUUID(string: "C22D1ECA-0F78-463B-8C21-688A517D7D2B")
     let characteristicUUIDWriteable : CBUUID = CBUUID(string: "632FB3C9-2078-419B-83AA-DBC64B5B685A")
     //MARK: 储存 - Int/Float/Double/String/Bool
-    
+    var dataPointer: Int = 0
     //MARK: 集合 - Array/Dictionary/Tuple
-    
+    var heartRateDatas: [Int] = Array() //模拟心率数据。只保存10条。
+    var subscribedCentral: [CBCentral] = Array()
     //MARK: UIView - UIView/UIControl/UIViewController
-    
+    @IBOutlet weak var logs: UITextView!
     //MARK: Foundation - NS/CG/CA/CF
     
     //MARK: 其他类 - Imported/Included
@@ -97,19 +99,63 @@ class ViewController: UIViewController {
 //MARK: 初始化与配置 - Initailize / Setup - initX(), setupX()
 
 //MARK: 操作与执行 - Action / Operation - doX(), gotoX(), calculateX()
-
+extension ViewController {
+    func doStartGCDTimer() {
+        self.writeLog("检测仪 - 开始检测心率数据...")
+        let queue: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //Initate the queue object
+        let _timer: dispatch_source_t = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)
+        dispatch_source_set_timer(_timer, dispatch_walltime(UnsafePointer(), 0), 10 * NSEC_PER_SEC, 0) //每10秒生成一次
+        dispatch_source_set_event_handler(_timer, {()
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if self.dataPointer > 9 {
+                    self.dataPointer = 0
+                }
+                let heartRate: Int = 60 + Int(arc4random_uniform(120))
+                if self.heartRateDatas.count > self.dataPointer {
+                    self.heartRateDatas[self.dataPointer] = heartRate
+                } else {
+                    self.heartRateDatas.append(heartRate)
+                }
+                Log.VLog("heart rate: \(heartRate)")
+                self.dataPointer++
+            })
+        })
+        dispatch_resume(_timer)
+    }
+    
+    //更新特征值
+    func updateCharacteristicValue() {
+        //特征值
+        let valueStr: String = "[\(NSDate().toString())]:\(self.heartRateDatas.toString())"
+        if let value: NSData = NSString(string: valueStr).dataUsingEncoding(NSUTF8StringEncoding) {
+            //更新特征值
+            self.peripheralManager.updateValue(value, forCharacteristic: self.characteristicReadable, onSubscribedCentrals: nil)
+            self.writeLog("上传的数据为：" + valueStr)
+        }
+    }
+    
+    func writeLog(log : String) {
+        Log.VLog(log)
+        self.logs.append(log)
+    }
+}
 //MARK: 响应方法 - Selector - didX()
 extension ViewController {
     @IBAction func didStartAdvertisingButtonClicked(sender : AnyObject) {
+        self.logs.clean()
         
-        self.peripheralManager.startAdvertising([
-            CBAdvertisementDataLocalNameKey : self.peripheralName,
-            CBAdvertisementDataServiceUUIDsKey : self.serviceUUID
-            ])
+        Log.VLog(self.peripheralManager)
         
-        Log.VLog("Start advertising...")
+        self.writeLog("监测仪 - 已启动。")
         
         (sender as? UIBarButtonItem)?.enabled = false
+        (sender as? UIBarButtonItem)?.title = "已启动"
+        
+        self.doStartGCDTimer()
+    }
+    @IBAction func didUploadDataButtonClicked(sender : AnyObject) {
+        self.writeLog("监测仪 - 开始上传数据...")
+        self.updateCharacteristicValue()
     }
 }
 //MARK: 回调 - Call Back - doneX()
@@ -126,14 +172,15 @@ extension ViewController {
 //MARK: CBPeripheralManagerDelegate
 extension ViewController : CBPeripheralManagerDelegate {
     func peripheralManagerDidUpdateState(peripheral: CBPeripheralManager) {
-        Log.VLog("Peripheral Manager did update state:")
+        self.writeLog("监测仪 - 状态更改")
         switch peripheral.state {
         case .PoweredOn:
-            Log.VLog("State Powered On.")
+            self.writeLog(" * Powered On * ")
+            self.peripheralManager.addService(self.service)
         case .PoweredOff:
-            Log.VLog("State Powered Off.")
+            self.writeLog(" * Powered Off * ")
         case .Unsupported:
-            Log.VLog("BLE is not supported on this device.")
+            self.writeLog("监测仪 - 此设备不支持BLE或未打开蓝牙功能，无法作为外围设备。")
         default:
             break
         }
@@ -141,29 +188,41 @@ extension ViewController : CBPeripheralManagerDelegate {
     
     func peripheralManager(peripheral: CBPeripheralManager, didAddService service: CBService, error: NSError?) {
         guard error == nil else {
-            Log.VLog("An error has occured when adding service. Error message: \(error?.localizedDescription ?? "")")
+            self.writeLog("监测仪 - 在添加检测服务的时候发生了错误！错误信息： \(error?.localizedDescription ?? "")")
+            self.navigationItem.leftBarButtonItem?.enabled = true
+            self.navigationItem.leftBarButtonItem?.title = "开机"
+            self.navigationItem.rightBarButtonItem?.enabled = false
             return
         }
-        Log.VLog("Service has been successfully added.")
+        self.navigationItem.rightBarButtonItem?.enabled = true
+        self.navigationItem.leftBarButtonItem?.enabled = false
+        self.navigationItem.leftBarButtonItem?.title = "已启动"
+        
+        self.writeLog("监测仪 - 检测服务添加成功，开始广播。")
+        
+        self.peripheralManager.startAdvertising([
+            CBAdvertisementDataLocalNameKey: self.peripheralName,
+            CBAdvertisementDataServiceUUIDsKey: [self.serviceUUID]
+        ])
     }
     
     func peripheralManagerDidStartAdvertising(peripheral: CBPeripheralManager, error: NSError?) {
         guard error == nil else {
-            Log.VLog("An error has occured when starting advertising. Error message: \(error?.localizedDescription ?? "")")
+            self.writeLog("监测仪 - 广播过程中发生错误，错误信息： \(error?.localizedDescription ?? "")")
             return
         }
-        Log.VLog("Adveritise has been successfully started.")
+        self.writeLog("监测仪 - 已成功广播。")
     }
     
     func peripheralManager(peripheral: CBPeripheralManager, didReceiveReadRequest request: CBATTRequest) {
-        Log.VLog("Receiving a request from other device.")
+        self.writeLog("监测仪 - 中央设备请求读取心率数据。")
         // 查看请求的特性是否是指定的特性
         if request.characteristic.UUID == self.characteristicUUIDReadable {
             if let value = self.characteristicReadable.value {
             // 确保读请求所请求的偏移量没有超出我们的特性的值的长度范围
             // offset属性指定的请求所要读取值的偏移位置
             if request.offset > value.length {
-                Log.VLog("Requesting data's length is out of range.")
+                self.writeLog("监测仪 - 中央设备请求的数据长度超限。")
                 self.peripheralManager.respondToRequest(request, withResult: .InvalidOffset)
             } else {
                 // 如果读取位置未越界，则将特性中的值的指定范围赋给请求的value属性。
@@ -172,10 +231,11 @@ extension ViewController : CBPeripheralManagerDelegate {
                 self.peripheralManager.respondToRequest(request, withResult: .Success)
                 }
             } else {
-                Log.VLog("Characteristic has no datas.")
+                self.writeLog("监测仪 - 请求的特征没有数据。")
             }
+        } else {
+            self.writeLog("监测仪 - 错误的请求")
         }
-        Log.VLog("Wrong request.")
     }
     
     func peripheralManager(peripheral: CBPeripheralManager, didReceiveWriteRequests requests: [CBATTRequest]) {
@@ -185,21 +245,29 @@ extension ViewController : CBPeripheralManagerDelegate {
     }
     
     func peripheralManager(peripheral: CBPeripheralManager, central: CBCentral, didSubscribeToCharacteristic characteristic: CBCharacteristic) {
-        Log.VLog("Central sbuscribed to characteristic: \(characteristic)")
-        if let updatedData = characteristic.value {
-            // 获取属性更新的值并调用以下方法将其发送到Central端
-            // 最后一个参数指定我们想将修改发送给哪个Central端，如果传nil，则会发送给所有连接的Central
-            // 将方法返回一个BOOL值，表示修改是否被成功发送，如果用于传送更新值的队列被填充满，则方法返回NO
-            if self.peripheralManager.updateValue(updatedData, forCharacteristic: (characteristic as! CBMutableCharacteristic), onSubscribedCentrals: nil) == true {
-                Log.VLog("Send Succeeded.")
-            } else {
-                Log.VLog("Send failed.")
-            }
+        self.writeLog("监测仪 - 发现中央设备尝试订阅特征： \(characteristic.UUID.UUIDString ?? "")")
+        //发现中心设备并存储
+        if !self.subscribedCentral.contains(central) {
+            self.subscribedCentral.append(central)
+            self.writeLog("监测仪 - 设备已保存。")
+        } else {
+            self.writeLog("监测仪 - 已连接的设备。")
         }
     }
     
     func peripheralManager(peripheral: CBPeripheralManager, central: CBCentral, didUnsubscribeFromCharacteristic characteristic: CBCharacteristic) {
-        
+        self.writeLog("监测仪 - 中央设备取消订阅特征：\(characteristic.UUID.UUIDString ?? "")")
+        if self.subscribedCentral.contains(central) {
+            for (index, sCentral) in self.subscribedCentral.enumerate() {
+                if sCentral == central {
+                    self.subscribedCentral.removeAtIndex(index)
+                    self.writeLog("监测仪 - 中央设备已移除。")
+                    break
+                }
+            }
+        } else {
+            self.writeLog("监测仪 - 没有该中央设备信息。")
+        }
     }
 }
 //MARK: - 其他

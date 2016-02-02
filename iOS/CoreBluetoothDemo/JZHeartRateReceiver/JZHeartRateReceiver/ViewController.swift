@@ -14,14 +14,19 @@
 //MARK: - 头文件
 import UIKit
 import CoreBluetooth
+import SVProgressHUD
 //MARK: - 类函数
 class ViewController: UIViewController {
     //MARK: 类属性
-    
+    let peripheralName : String = String("Heart Rate Simulate Receiver")
+    let serviceUUID : CBUUID = CBUUID(string: "3655296F-96CE-44D4-912D-CD83F06E7E7E")
+    let characteristicUUIDReadable : CBUUID = CBUUID(string: "C22D1ECA-0F78-463B-8C21-688A517D7D2B")
+    let characteristicUUIDWriteable : CBUUID = CBUUID(string: "632FB3C9-2078-419B-83AA-DBC64B5B685A")
     //MARK: 储存 - Int/Float/Double/String/Bool
     var isScanning : Bool = false
     //MARK: 集合 - Array/Dictionary/Tuple
-    
+    var peripherals: [CBPeripheral] = Array()    //连接的外围设备
+    var messages: [String] = Array()
     //MARK: UIView - UIView/UIControl/UIViewController
     
     //MARK: Foundation - NS/CG/CA/CF
@@ -82,16 +87,23 @@ class ViewController: UIViewController {
 //MARK: 初始化与配置 - Initailize / Setup - initX(), setupX()
 
 //MARK: 操作与执行 - Action / Operation - doX(), gotoX(), calculateX()
-
-//MARK: 响应方法 - Selector - didX()
 extension ViewController {
-    @IBAction func didScanDevicesButtonClicked(sender : AnyObject) {
+    func doStartScanning() {
         self.isScanning = true
+        
+        Log.VLog("开始扫描周边设备...")
+        SVProgressHUD.showWithMaskType(.Gradient)
+        
         // 查找Peripheral设备
         // 如果第一个参数传递nil，则管理器会返回所有发现的Peripheral设备。
         // 通常我们会指定一个UUID对象的数组，来查找特定的设备
         self.centralManager.scanForPeripheralsWithServices(nil, options: nil)
-        Log.VLog("Start scanning...")
+    }
+}
+//MARK: 响应方法 - Selector - didX()
+extension ViewController {
+    @IBAction func didScanDevicesButtonClicked(sender : AnyObject) {
+        self.doStartScanning()
     }
 }
 //MARK: 回调 - Call Back - doneX()
@@ -108,7 +120,7 @@ extension ViewController {
 //MARK: CBCentralManagerDelegate
 extension ViewController : CBCentralManagerDelegate {
     func centralManagerDidUpdateState(central: CBCentralManager) {
-        Log.VLog("Central Manager did update state:")
+        Log.VLog("中央设备状态变更：")
         switch central.state {
         case .PoweredOn:
             Log.VLog("State Powered On.")
@@ -122,21 +134,61 @@ extension ViewController : CBCentralManagerDelegate {
     }
     
     func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber) {
-        Log.VLog("One device has been scanned with name: \(peripheral.name ?? "")")
+        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+            SVProgressHUD.dismiss()
+        })
+        Log.VLog("扫描到设备: \(peripheral.name ?? "")")
         // 当我们查找到Peripheral端时，我们可以停止查找其它设备，以节省电量
-        centralManager.stopScan()
-        Log.VLog("Scan's stopped")
+        if self.peripherals.contains(peripheral) {
+            
+        } else {
+            //添加保存外围设备，注意如果这里不保存外围设备（或者说peripheral没有一个强引用，无法到达连接成功（或失败）的代理方法，因为在此方法调用完就会被销毁
+            Log.VLog("中央 - 保存外围设备信息。\(peripheral.name ?? "")")
+            self.peripherals.append(peripheral)
+            self.messages.append("")
+//            centralManager.stopScan()
+            let alertController = UIAlertController(title: nil, message: "已扫描到新的设备：\(peripheral.name ?? "")，是否继续扫描其它？", preferredStyle: .ActionSheet)
+            let cancelAction = UIAlertAction(title: "停止扫描", style: .Cancel, handler: { (action: UIAlertAction) -> Void in
+                self.centralManager.stopScan()
+                self.isScanning = false
+                
+                Log.VLog("已停止扫描。")
+            })
+            let confirmAction = UIAlertAction(title: "继续扫描", style: .Default, handler: { (action: UIAlertAction) -> Void in
+                SVProgressHUD.showWithMaskType(.Gradient)
+                self.isScanning = true
+                Log.VLog("继续扫描。")
+            })
+            
+            alertController.addAction(cancelAction)
+            alertController.addAction(confirmAction)
+            
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
         
-        centralManager.connectPeripheral(peripheral, options: nil)
-        Log.VLog("Attempt to connect to device...")
+        if self.isScanning == false {
+            
+            //连接外围设备
+            self.centralManager.connectPeripheral(peripheral, options: nil)
+            Log.VLog("尝试连接到设备\(peripheral.name ?? "")。")
+        }
     }
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
-        Log.VLog("Device \(peripheral.name ?? "") is now connected.")
+        Log.VLog("中央 - 连接外围设备成功!")
+        //设置外围设备的代理为当前视图控制器
         peripheral.delegate = self
-        Log.VLog("Discovering services in device.")
-        peripheral.discoverServices(nil)
-        
+        //外围设备开始寻找服务
+        Log.VLog("外围 - 开始寻找服务...")
+        peripheral.discoverServices([self.serviceUUID])
+    }
+    //断开连接
+    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        Log.VLog("中央 - 已与设备\(peripheral.name ?? "")断开连接。")
+    }
+    //连接外围设备失败
+    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
+        Log.VLog("中央 - 连接外围设备失败！错误信息：\(error)")
     }
 }
 //MARK: CBPeripheralDelegate
@@ -146,10 +198,11 @@ extension ViewController : CBPeripheralDelegate {
             Log.VLog("Discovering services failed with error message: \(error?.localizedDescription ?? "")")
             return
         }
+        Log.VLog("外围 - 已发现可用服务.")
         if let services = peripheral.services {
-            Log.VLog("Services discovered.")
+            Log.VLog("外围 - 开始遍历查找到的服务...")
             for service in services {
-                Log.VLog("Discovering characteristic in service: \(service)")
+                Log.VLog("外围 - 开始在外围设备查找指定服务中的特征...")
                 peripheral.discoverCharacteristics(nil, forService: service)
             }
         } else {
@@ -161,25 +214,18 @@ extension ViewController : CBPeripheralDelegate {
             Log.VLog("Discovering characteristics failed with error message: \(error?.localizedDescription ?? "") in service: \(service)")
             return
         }
+        Log.VLog("外围 - 已发现可用特征。")
         if let characteristics = service.characteristics {
+            Log.VLog("外围 - 开始遍历遍历服务中的特征...")
             for characteristic in characteristics {
-                Log.VLog("Subscribing characteristic: \(characteristic)")
                 //                peripheral.readValueForCharacteristic(characteristic)
-                peripheral.setNotifyValue(true, forCharacteristic: characteristic)
+                if characteristic.UUID == self.characteristicUUIDReadable {
+                    Log.VLog("订阅特征: \(characteristic)")
+                    peripheral.setNotifyValue(true, forCharacteristic: characteristic)
+                }
             }
         } else {
             Log.VLog("No characteristic in service: \(service)")
-        }
-    }
-    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        guard error == nil else {
-            Log.VLog("Reading value failed with error message: \(error?.localizedDescription ?? "") in characteristic: \(characteristic)")
-            return
-        }
-        if let data = characteristic.value {
-            Log.VLog("Data is: \(data)")
-        } else {
-            Log.VLog("Read no data.")
         }
     }
     func peripheral(peripheral: CBPeripheral, didUpdateNotificationStateForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
@@ -187,21 +233,38 @@ extension ViewController : CBPeripheralDelegate {
             Log.VLog("Notifying update failed with error message: \(error?.localizedDescription ?? "") in characteristic: \(characteristic)")
         }
         
-        Log.VLog("Notifying updating state.")
+        Log.VLog("外围 - 收到外围设备的特征更新通知。")
         
         //给特征值设置新的值
         if characteristic.isNotifying {
             if characteristic.properties == .Notify {
-                Log.VLog("Characteristic subscribed.")
+                Log.VLog("外围 - 已订阅特征通知.")
                 return
             } else if characteristic.properties == .Read {
                 //从外围设备读取新值,调用此方法会触发代理方法：-(void)peripheral:(CBPeripheral *)peripheral didUpdateValueForCharacteristic:(CBCharacteristic *)characteristic error:(NSError *)error
                 peripheral.readValueForCharacteristic(characteristic)
             }
         } else {
-            Log.VLog("Characteristic unsubscribed.")
+            Log.VLog("外围 - 已停止.")
             //取消连接
             self.centralManager.cancelPeripheralConnection(peripheral)
+        }
+    }
+    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+        guard error == nil else {
+            Log.VLog("外围 - 更新特征值时发生错误，错误信息：\(error?.localizedDescription)")
+            return
+        }
+        if let value = characteristic.value {
+            let valueString = NSString(data: value, encoding: NSUTF8StringEncoding)
+            Log.VLog(String(valueString ?? ""))
+            for (index, peripheralT) in self.peripherals.enumerate() {
+                if peripheral == peripheralT {
+                    self.messages[index] = String(valueString)
+                }
+            }
+        } else {
+            Log.VLog("外围 - 未发现特征值。")
         }
     }
 }

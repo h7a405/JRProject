@@ -133,10 +133,10 @@ extension UITextView {
     
     func append(text: String) {
         print(text)
-        let tempText = (self.text ?? "") + "\n\(text)"
+        let tempText = "\n\(text)" + (self.text ?? "")
         self.text = tempText
         
-        self.scrollToBottom()
+//        self.scrollToBottom()
     }
     func clean() {
         self.text = ""

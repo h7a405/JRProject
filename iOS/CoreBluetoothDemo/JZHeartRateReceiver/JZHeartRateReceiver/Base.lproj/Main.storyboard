@@ -3,9 +3,10 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--模拟心率扫描器-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="JZHeartRateReceiver" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,9 +17,25 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dLX-Bi-TSY">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="QhD-6H-weS"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="z80-XJ-pc4"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="dLX-Bi-TSY" secondAttribute="bottom" id="2Cc-6h-lSi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dLX-Bi-TSY" secondAttribute="trailing" constant="-20" id="GgJ-em-EYG"/>
+                            <constraint firstItem="dLX-Bi-TSY" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-64" id="d7c-EK-hsU"/>
+                            <constraint firstItem="dLX-Bi-TSY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="fwR-Cr-kUh"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="X6Y-hM-mu2">
+                    <navigationItem key="navigationItem" title="模拟心率扫描器" id="X6Y-hM-mu2">
                         <barButtonItem key="rightBarButtonItem" title="搜索" id="g0F-5o-hE6">
                             <connections>
                                 <action selector="didScanDevicesButtonClicked:" destination="BYZ-38-t0r" id="rPu-CF-KEM"/>
