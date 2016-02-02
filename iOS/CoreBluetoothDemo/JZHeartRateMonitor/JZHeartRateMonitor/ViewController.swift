@@ -41,7 +41,7 @@ class ViewController: UIViewController {
     lazy var peripheralManager : CBPeripheralManager = { return CBPeripheralManager(delegate: self, queue: nil )}()
     
     lazy var characteristicReadable : CBMutableCharacteristic = { return CBMutableCharacteristic(type: self.characteristicUUIDReadable, properties: .Notify, value: nil, permissions: .Readable) }()
-    lazy var characteristicWriteable : CBMutableCharacteristic = { return CBMutableCharacteristic(type: self.characteristicUUIDWriteable, properties: .Notify, value: nil, permissions: .Writeable) }()
+    lazy var characteristicWriteable : CBMutableCharacteristic = { return CBMutableCharacteristic(type: self.characteristicUUIDWriteable, properties: .Write, value: nil, permissions: .Writeable) }()
     lazy var service : CBMutableService = {
         var tempService = CBMutableService(type: self.serviceUUID, primary: true)
         tempService.characteristics = [self.characteristicReadable, self.characteristicWriteable]
