@@ -173,7 +173,9 @@ extension ViewController : UITableViewDelegate {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         if self.messages.count > indexPath.row {
             self.messages[indexPath.row] = ""
+            tableView.beginUpdates()
             tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            tableView.endUpdates()
         }
     }
 }
@@ -233,6 +235,9 @@ extension ViewController : CBCentralManagerDelegate {
     
     func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral) {
         Log.VLog("中央 - 连接外围设备成功!")
+        
+        self.tableView.reloadData()
+        
         //设置外围设备的代理为当前视图控制器
         peripheral.delegate = self
         //外围设备开始寻找服务
@@ -326,7 +331,9 @@ extension ViewController : CBPeripheralDelegate {
             for (index, peripheralT) in self.peripherals.enumerate() {
                 if peripheral == peripheralT {
                     self.messages[index] = String(valueString)
+                    self.tableView.beginUpdates()
                     self.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Automatic)
+                    self.tableView.endUpdates()
                 }
             }
         } else {

@@ -106,7 +106,7 @@ extension ViewController {
         self.writeLog("检测仪 - 开始检测心率数据...")
         let queue: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0) //Initate the queue object
         let _timer: dispatch_source_t = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)
-        dispatch_source_set_timer(_timer, dispatch_walltime(UnsafePointer(), 0), 10 * NSEC_PER_SEC, 0) //每10秒生成一次
+        dispatch_source_set_timer(_timer, dispatch_walltime(UnsafePointer(), 0), 5 * NSEC_PER_SEC, 0) //每10秒生成一次
         dispatch_source_set_event_handler(_timer, {()
             if !self.isDetecting { //count down finished
                 dispatch_source_cancel(_timer)
@@ -118,7 +118,7 @@ extension ViewController {
                     if self.dataPointer > 9 {
                         self.dataPointer = 0
                     }
-                    let heartRate: Int = 60 + Int(arc4random_uniform(120))
+                    let heartRate: Int = 60 + Int(arc4random_uniform(80))
                     if self.heartRateDatas.count > self.dataPointer {
                         self.heartRateDatas[self.dataPointer] = heartRate
                     } else {
