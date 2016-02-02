@@ -65,9 +65,6 @@ class ViewController: UIViewController {
     //改变视图数据
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        
-        self.peripheralManager.addService(self.service)
-        
     }
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
