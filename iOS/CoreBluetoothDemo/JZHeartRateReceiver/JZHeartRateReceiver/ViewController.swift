@@ -322,7 +322,7 @@ extension ViewController : CBPeripheralDelegate {
                     Log.VLog("订阅特征: \(characteristic)")
                     peripheral.setNotifyValue(true, forCharacteristic: characteristic)
                 } else if characteristic.UUID == self.characteristicUUIDWriteable {
-                    self.characteristicWriteable = CBMutableCharacteristic(type: self.characteristicUUIDWriteable, properties: .Notify, value: nil, permissions: .Writeable)
+                    self.characteristicWriteable = CBMutableCharacteristic(type: self.characteristicUUIDWriteable, properties: .Write, value: nil, permissions: .Writeable)
                 }
             }
         } else {
