@@ -180,7 +180,7 @@ extension ViewController : UITableViewDelegate {
             if self.peripherals.count > indexPath.row {
                 let peripheral = self.peripherals[indexPath.row]
                 let data = NSString(string: "fetch").dataUsingEncoding(NSUTF8StringEncoding)
-                Log.VLog("向外围设备发送数据。")
+                Log.VLog("向外围设备\(peripheral.name ?? "")发送数据。")
                 if self.characteristicWriteable?.properties == .Write {
                     peripheral.writeValue(data!, forCharacteristic: self.characteristicWriteable!, type: .WithResponse)
                 } else {
@@ -322,7 +322,7 @@ extension ViewController : CBPeripheralDelegate {
                     Log.VLog("订阅特征: \(characteristic)")
                     peripheral.setNotifyValue(true, forCharacteristic: characteristic)
                 } else if characteristic.UUID == self.characteristicUUIDWriteable {
-                    self.characteristicWriteable = CBMutableCharacteristic(type: self.characteristicUUIDWriteable, properties: .Write, value: nil, permissions: .Writeable)
+                    self.characteristicWriteable = (characteristic as? CBMutableCharacteristic)
                 }
             }
         } else {
