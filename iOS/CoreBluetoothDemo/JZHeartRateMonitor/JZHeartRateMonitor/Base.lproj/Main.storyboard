@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -33,13 +34,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="监测记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGG-mu-jjR">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="监测记录" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OGG-mu-jjR">
                                 <rect key="frame" x="20" y="72" width="560" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="waE-RM-F2h"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="wcL-fR-oQG">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="right" translatesAutoresizingMaskIntoConstraints="NO" id="wcL-fR-oQG">
                                 <rect key="frame" x="20" y="101" width="560" height="479"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,6 +52,15 @@
                             </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="wcL-fR-oQG" secondAttribute="trailing" id="1T3-Zi-r7U"/>
+                            <constraint firstItem="wcL-fR-oQG" firstAttribute="top" secondItem="OGG-mu-jjR" secondAttribute="bottom" constant="8" id="5Ig-Rf-Ewz"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="OGG-mu-jjR" secondAttribute="leading" id="Aij-CN-eKT"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="wcL-fR-oQG" secondAttribute="bottom" constant="20" id="gvt-O3-DkK"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="wcL-fR-oQG" secondAttribute="leading" id="mjX-bE-mPf"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OGG-mu-jjR" secondAttribute="trailing" id="pSP-QU-Xo4"/>
+                            <constraint firstItem="OGG-mu-jjR" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="uRh-0l-N8f"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="模拟心率监测仪" id="3Bz-5t-4Tc">
                         <barButtonItem key="leftBarButtonItem" title="启动" id="AjM-0F-n4O">
