@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     // 第二个参数如果指定为nil，则默认使用主队列
     lazy var peripheralManager : CBPeripheralManager = { return CBPeripheralManager(delegate: self, queue: nil )}()
     
-    lazy var characteristicReadable : CBMutableCharacteristic = { return CBMutableCharacteristic(type: self.characteristicUUIDReadable, properties: .Read, value: nil, permissions: .Readable) }()
+    lazy var characteristicReadable : CBMutableCharacteristic = { return CBMutableCharacteristic(type: self.characteristicUUIDReadable, properties: .Notify, value: nil, permissions: .Readable) }()
     lazy var characteristicWriteable : CBMutableCharacteristic = { return CBMutableCharacteristic(type: self.characteristicUUIDWriteable, properties: .Notify, value: nil, permissions: .Writeable) }()
     lazy var service : CBMutableService = {
         var tempService = CBMutableService(type: self.serviceUUID, primary: true)

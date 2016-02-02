@@ -239,6 +239,14 @@ extension ViewController : CBCentralManagerDelegate {
     //断开连接
     func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?) {
         Log.VLog("中央 - 已与设备\(peripheral.name ?? "")断开连接。")
+        if self.peripherals.contains(peripheral) {
+            for (index, peripheralT) in self.peripherals.enumerate() {
+                if peripheralT == peripheral {
+                    self.peripherals.removeAtIndex(index)
+                    Log.VLog("设备\(peripheral.name ?? "")已被移除。")
+                }
+            }
+        }
     }
     //连接外围设备失败
     func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?) {
