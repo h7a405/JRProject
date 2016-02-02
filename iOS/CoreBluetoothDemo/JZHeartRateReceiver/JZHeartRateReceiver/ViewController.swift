@@ -37,7 +37,7 @@ class ViewController: UIViewController {
     // 如果queue为nil，则Central管理器使用主队列来发送事件
     lazy var centralManager : CBCentralManager = { return CBCentralManager(delegate: self, queue: nil) }()
     
-    var characteristicWriteable : CBMutableCharacteristic?
+    var characteristicWriteable : CBCharacteristic?
     //MARK: 闭包与结构体 - Closure/Struct
     
     //MARK: 代理与数据源 - delegate/datasource
@@ -180,9 +180,12 @@ extension ViewController : UITableViewDelegate {
             if self.peripherals.count > indexPath.row {
                 let peripheral = self.peripherals[indexPath.row]
                 let data = NSString(string: "fetch").dataUsingEncoding(NSUTF8StringEncoding)
+                
+                peripheral.writeValue(data!, forCharacteristic: self.characteristicWriteable!, type: .WithResponse)
+                
                 Log.VLog("向外围设备\(peripheral.name ?? "")发送数据。")
                 Log.VLog("\(self.characteristicWriteable?.properties)")
-                if self.characteristicWriteable?.properties == .Write {
+                if self.characteristicWriteable?.properties != nil && self.characteristicWriteable?.properties == .Write {
                     peripheral.writeValue(data!, forCharacteristic: self.characteristicWriteable!, type: .WithResponse)
                 } else {
                     Log.VLog("没有向该特征写入数据的权限。")
@@ -323,8 +326,7 @@ extension ViewController : CBPeripheralDelegate {
                     Log.VLog("订阅特征: \(characteristic)")
                     peripheral.setNotifyValue(true, forCharacteristic: characteristic)
                 } else if characteristic.UUID == self.characteristicUUIDWriteable {
-                    Log.VLog(characteristic.properties)
-                    self.characteristicWriteable = (characteristic as? CBMutableCharacteristic)
+                    self.characteristicWriteable = characteristic
                 }
             }
         } else {
@@ -372,6 +374,13 @@ extension ViewController : CBPeripheralDelegate {
         } else {
             Log.VLog("外围 - 未发现特征值。")
         }
+    }
+    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
+        guard error == nil else {
+            Log.VLog("发送消息时失败，错误信息：\(error?.localizedDescription ?? "")")
+            return
+        }
+        Log.VLog("发送成功。")
     }
 }
 //MARK: - 其他
