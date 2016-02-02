@@ -180,7 +180,12 @@ extension ViewController : UITableViewDelegate {
             if self.peripherals.count > indexPath.row {
                 let peripheral = self.peripherals[indexPath.row]
                 let data = NSString(string: "fetch").dataUsingEncoding(NSUTF8StringEncoding)
-                peripheral.writeValue(data!, forCharacteristic: self.characteristicWriteable!, type: .WithResponse)
+                Log.VLog("向外围设备发送数据。")
+                if self.characteristicWriteable?.properties == .Write {
+                    peripheral.writeValue(data!, forCharacteristic: self.characteristicWriteable!, type: .WithResponse)
+                } else {
+                    Log.VLog("没有向该特征写入数据的权限。")
+                }
             }
         }
         let cleanAction = UIAlertAction(title: "清除数据", style: .Default) { (action: UIAlertAction) -> Void in
@@ -365,14 +370,6 @@ extension ViewController : CBPeripheralDelegate {
         } else {
             Log.VLog("外围 - 未发现特征值。")
         }
-    }
-    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?) {
-        guard error == nil else {
-            Log.VLog("发送数据失败，错误信息：\(error?.localizedDescription ?? "")")
-            return
-        }
-        Log.VLog("发送成功。")
-        peripheral.readValueForCharacteristic(characteristic)
     }
 }
 //MARK: - 其他
