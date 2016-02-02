@@ -184,9 +184,10 @@ extension ViewController : UITableViewDelegate {
                 peripheral.writeValue(data!, forCharacteristic: self.characteristicWriteable!, type: .WithResponse)
                 
                 Log.VLog("向外围设备\(peripheral.name ?? "")发送数据。")
-                Log.VLog("\(self.characteristicWriteable?.properties)")
-                if self.characteristicWriteable?.properties != nil && self.characteristicWriteable?.properties == .Write {
+                
+                if self.characteristicWriteable?.properties != nil && self.characteristicWriteable?.properties == CBCharacteristicProperties(rawValue: 136) {
                     peripheral.writeValue(data!, forCharacteristic: self.characteristicWriteable!, type: .WithResponse)
+                    
                 } else {
                     Log.VLog("没有向该特征写入数据的权限。")
                 }
