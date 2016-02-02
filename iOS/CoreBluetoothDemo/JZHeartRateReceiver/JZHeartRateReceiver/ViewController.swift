@@ -181,6 +181,7 @@ extension ViewController : UITableViewDelegate {
                 let peripheral = self.peripherals[indexPath.row]
                 let data = NSString(string: "fetch").dataUsingEncoding(NSUTF8StringEncoding)
                 Log.VLog("向外围设备\(peripheral.name ?? "")发送数据。")
+                Log.VLog("\(self.characteristicWriteable?.properties)")
                 if self.characteristicWriteable?.properties == .Write {
                     peripheral.writeValue(data!, forCharacteristic: self.characteristicWriteable!, type: .WithResponse)
                 } else {
