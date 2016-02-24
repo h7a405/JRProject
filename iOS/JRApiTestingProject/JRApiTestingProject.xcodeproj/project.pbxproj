@@ -222,6 +222,7 @@
 		BBE27C3F1BBA588B0051A3E1 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = "qi-cloud.com";
 				TargetAttributes = {
