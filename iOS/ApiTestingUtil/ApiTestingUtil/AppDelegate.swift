@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  ApiTestingUtil
 //
-//  Created by Jason.Chengzi on 16/01/20.
-//  Copyright © 2016年 hvit. All rights reserved.
+//  Created by Jason Lee on 16/01/20.
+//  Copyright © 2016年 CZLee. All rights reserved.
 //
 
 import UIKit

@@ -211,11 +211,22 @@
                                     <constraint firstAttribute="height" constant="100" id="xZj-Wo-qZw"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="v1.1" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UMd-qe-uvS">
+                                <rect key="frame" x="558" y="579" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="52t-fQ-IWB"/>
+                                    <constraint firstAttribute="width" constant="42" id="ml8-Nk-YaQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="FUf-Aa-ypj" secondAttribute="bottom" constant="20" id="3LW-t5-NPn"/>
                             <constraint firstItem="eU4-gh-zm3" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="7Wy-yx-M4m"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="UMd-qe-uvS" secondAttribute="bottom" id="Fz5-ee-ZT7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="FUf-Aa-ypj" secondAttribute="trailing" id="IAh-ES-lYi"/>
                             <constraint firstItem="FUf-Aa-ypj" firstAttribute="top" secondItem="eU4-gh-zm3" secondAttribute="bottom" constant="8" id="Ioc-Sr-RAM"/>
                             <constraint firstAttribute="trailingMargin" secondItem="eU4-gh-zm3" secondAttribute="trailing" constant="-20" id="Oo5-x2-sbF"/>
@@ -224,6 +235,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="jS4-Vn-4mS" secondAttribute="trailing" constant="-20" id="f6N-4j-VPG"/>
                             <constraint firstItem="jS4-Vn-4mS" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="mel-fi-Hd8"/>
                             <constraint firstItem="eU4-gh-zm3" firstAttribute="top" secondItem="jS4-Vn-4mS" secondAttribute="bottom" constant="8" id="nRa-eE-SYn"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="UMd-qe-uvS" secondAttribute="trailing" constant="-20" id="qWw-y7-EYq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Api测试" id="gyU-AB-K6O"/>
