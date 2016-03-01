@@ -71,7 +71,7 @@ class NetworkTestingViewController: UIViewController {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: NSBundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     convenience init() {
@@ -80,7 +80,7 @@ class NetworkTestingViewController: UIViewController {
     }
 
     @IBAction func baseURLLock(sender: AnyObject) {
-        var theSwitch = sender as! UISwitch
+        let theSwitch = sender as! UISwitch
         if theSwitch.on {
             self.baseURLTextField.enabled = false
         } else {
@@ -89,7 +89,7 @@ class NetworkTestingViewController: UIViewController {
     }
     
     @IBAction func didGenerateButtonClicked(sender: AnyObject) {
-        var randomString = AppParamEncryptUtil().requestRandomEncryptedString()
+        let randomString = AppParamEncryptUtil().requestRandomEncryptedString()
 //        var tool = QCloudAppParamEncrptTool()
 //        var randomString = tool.requestRandomEncryptedString()
         Log.DLog(randomString)
@@ -98,9 +98,9 @@ class NetworkTestingViewController: UIViewController {
         self.decryptTextField.text = ""
     }
     @IBAction func didEncryptButtonClicked(sender: AnyObject) {
-        if count(self.randomTextField.text) > 0 {
-            if count(self.keyTextField.text) > 0 {
-                var encryptString = AppParamEncryptUtil().signParam(byString: self.randomTextField.text, andKey: self.keyTextField.text)
+        if self.randomTextField.text?.length() > 0 {
+            if self.keyTextField.text?.length() > 0 {
+                let encryptString = AppParamEncryptUtil().signParam(byString: self.randomTextField.text!, andKey: self.keyTextField.text!)
 //                var tool = QCloudAppParamEncrptTool()
 //                var encryptString = tool.signParamWithString(self.randomTextField.text, andKey: self.keyTextField.text)
                 Log.DLog(encryptString)
@@ -109,8 +109,8 @@ class NetworkTestingViewController: UIViewController {
         }
     }
     @IBAction func didDecryptButtonClicked(sender: AnyObject) {
-        if count(self.randomTextField.text) > 0 {
-            var result = AppParamEncryptUtil().decryptParam(byString: self.randomTextField.text)
+        if self.randomTextField.text?.length() > 0 {
+            let result = AppParamEncryptUtil().decryptParam(byString: self.randomTextField.text!)
 //            var tool = QCloudAppParamEncrptTool()
 //            var result = tool.decryptParamWithString(self.randomTextField.text)
             Log.DLog("\(result)")
@@ -128,23 +128,23 @@ class NetworkTestingViewController: UIViewController {
         self.decryptTextField.text = ""
     }
     @IBAction func didSubmitButtonClicked(sender: AnyObject) {
-        if count(self.baseURLTextField.text) > 0 {
-            var theURL: String = "http://" + self.baseURLTextField.text + self.routeTextField.text
+        if self.baseURLTextField.text?.length() > 0 {
+            let theURL: String = "http://" + self.baseURLTextField.text! + self.routeTextField.text!
             Log.DLog(theURL)
-            var dic: NSMutableDictionary = NSMutableDictionary()
-            if self.randomTextField.text.length() > 0 {
-                dic.setObject(self.randomTextField.text, forKey: "qc_app_str")
+            let dic: NSMutableDictionary = NSMutableDictionary()
+            if self.randomTextField.text!.length() > 0 {
+                dic.setObject(self.randomTextField.text!, forKey: "qc_app_str")
             }
-            if self.encryptTextField.text.length() > 0 {
-                dic.setObject(self.encryptTextField.text, forKey: "qc_app_sign")
+            if self.encryptTextField.text!.length() > 0 {
+                dic.setObject(self.encryptTextField.text!, forKey: "qc_app_sign")
             }
-            var numberOfRows: Int = self.tableView(self.tableView, numberOfRowsInSection: 0)
+            let numberOfRows: Int = self.tableView(self.tableView, numberOfRowsInSection: 0)
             if numberOfRows > 0 {
                 for i in 0..<numberOfRows {
-                    var tempCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? NetworkTestingTableViewCell
+                    let tempCell = self.tableView.cellForRowAtIndexPath(NSIndexPath(forRow: i, inSection: 0)) as? NetworkTestingTableViewCell
                     if tempCell != nil {
-                        if tempCell!.keyTextField.text.length() > 0 && tempCell!.dataTextField.text.length() > 0 {
-                            dic.setObject(tempCell!.dataTextField.text, forKey: tempCell!.keyTextField.text)
+                        if tempCell!.keyTextField.text!.length() > 0 && tempCell!.dataTextField.text!.length() > 0 {
+                            dic.setObject(tempCell!.dataTextField.text!, forKey: tempCell!.keyTextField.text!)
                         }
                     }
                 }
@@ -176,8 +176,8 @@ class NetworkTestingViewController: UIViewController {
     }
     func doDataReceived(dic: NSDictionary?) {
         if dic != nil {
-            var (status, message) = (dic!.objectForKey("status") as! Int, dic!.objectForKey("message") as! String)
-            var data: AnyObject? = dic!.objectForKey("data")
+            let (status, message) = (dic!.objectForKey("status") as! Int, dic!.objectForKey("message") as! String)
+            let data: AnyObject? = dic!.objectForKey("data")
             self.resultTextView.text = "Request data:(\nstatus: \(status), \nmessage: \(message), \nData:\(data)\n)"
         } else {
             self.resultTextView.text = "Request failed."
@@ -237,8 +237,8 @@ extension NetworkTestingViewController: UITextFieldDelegate {
         if textField === self.routeTextField {
             textField.resignFirstResponder()
             var strings: [String] = Array()
-            for (index, tuple) in enumerate(self.interfaces) {
-                var (name, route) = tuple
+            for (_, tuple) in self.interfaces.enumerate() {
+                let (name, _) = tuple
                 strings.append(name)
             }
             JRPickerView(pickerData: strings, delegate: self).showOnView(KEYWINDOW)
@@ -247,7 +247,7 @@ extension NetworkTestingViewController: UITextFieldDelegate {
 }
 extension NetworkTestingViewController: JRPickerViewDelegate {
     func JRpickerView(pickerView: JRPickerView, didSelectRowAtIndexPath indexPath: NSIndexPath?, content: String) {
-        var (name, route): (String, String) = self.interfaces[indexPath!.row]
+        let (_, route): (String, String) = self.interfaces[indexPath!.row]
         self.routeTextField.text = route
         self.doUpdateTableView(indexPath!.row)
     }

@@ -1,0 +1,25 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "18cf3774-1eaa-0c4b-b052-0ede04c1b40d++4043",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+    "18cf3774-1eaa-0c4b-b052-0ede04c1b40d++4043" : {
+
+    }
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "18cf3774-1eaa-0c4b-b052-0ede04c1b40d++4043" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1CCFA3A0-00C7-44A5-BCE6-83EDACB1F7D3",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "18cf3774-1eaa-0c4b-b052-0ede04c1b40d++4043" : "HouseBank_V1.0.9\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "HouseBank",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "HouseBank\/HouseBank.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/10.10.11.2\/svn\/ios",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Subversion",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "18cf3774-1eaa-0c4b-b052-0ede04c1b40d++4043"
+    }
+  ]
+}
