@@ -58,7 +58,8 @@ extension AFNetworkingHelper {
         
         let session = AFHTTPSessionManager(sessionConfiguration: configuration)
         
-        session.responseSerializer.acceptableContentTypes = ["application/json", "text/html", "text/json"]
+//        session.responseSerializer.acceptableContentTypes = ["application/json", "text/html", "text/json"]
+        session.responseSerializer.acceptableContentTypes = nil
         
         session.POST(
             url,
